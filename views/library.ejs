@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="library-body">
+        <div class="library-left">
+            <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#library-books"><i class="fa-solid fa-book"></i> Books</a>
+            <a href="#library-add"><i class="fa-solid fa-folder-plus"></i> Add</a>
+        </div>
+        <div class="library-right">
+            <div id="library-books">
+                <% books.forEach((book) => { %>
+                    <a href="/book/<%=book.book_id%>">
+                        <div class="book">
+                            <!-- <h4>Book Name</h4> -->
+                            <p><%=book.book_name %></p>
+                            <!-- <h4>Publisher</h4> -->
+                            <p><%=book.book_publisher%></p>
+                            <!-- <h4>Count</h4> -->
+                            <p><%=book.book_count%></p>
+                        </div>  
+                    </a>     
+                <% }) %>
+            </div>
+            <div id="library-add">
+                <h3>ADD BOOK</h3>
+                <form action="/addBook" method="post">
+                    <label for="bookName">Enter Book Title</label>
+                    <input type="text" name="bookName">
+                    <label for="bookName">Enter Book Publisher</label>
+                    <input type="text" name="bookPublisher">
+                    <button>UPDATE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
