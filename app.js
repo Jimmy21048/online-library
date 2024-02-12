@@ -8,11 +8,11 @@ const app = express();
 
 
 const connection = mysql.createConnection({
-    host: "behzkxx5kjeqbtk0abwj-mysql.services.clever-cloud.com",
-    port: "3306",
-    user: "uz3lpolek6uahs2r",
-    password: "uz3lpolek6uahs2r",
-    database: "behzkxx5kjeqbtk0abwj"
+    host: "localhost",
+    port: "3308",
+    user: "root",
+    password: "",
+    database: "listBooks"
 });
 connection.connect((err) => {
     if(err) {

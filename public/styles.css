@@ -51,8 +51,6 @@ header .home-left p:first-of-type {
 .home-right a {
     text-decoration:none;
     color:rgb(204, 240, 255);
-    /* background-color: darkslategrey; */
-    /* border:1px solid; */
     padding:7px 10px;
     border-radius:10px;
     font-weight:800;
@@ -153,8 +151,9 @@ header .home-left p:first-of-type {
     overflow-y:scroll;
     height:inherit;
     width:90vw;
-    display:flex;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* flex-wrap: wrap; */
     gap:10px;
     padding:10px;
 }
@@ -239,5 +238,12 @@ header .home-left p:first-of-type {
     text-align: center;
     color: #A52A2A;
     font-size:1.2rem;
+}
+
+@media screen and (max-width:800) {
+    .home-right {
+        /* visibility:hidden; */
+        background-color: black;
+    }
 }
 
