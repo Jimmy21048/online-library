@@ -6,12 +6,13 @@ const mysql = require('mysql');
 
 const app = express();
 
+
 const connection = mysql.createConnection({
-    host: "localhost",
-    port: "3308",
-    user: "root",
-    password: "",
-    database: "listBooks"
+    host: "behzkxx5kjeqbtk0abwj-mysql.services.clever-cloud.com",
+    port: "3306",
+    user: "uz3lpolek6uahs2r",
+    password: "uz3lpolek6uahs2r",
+    database: "behzkxx5kjeqbtk0abwj"
 });
 connection.connect((err) => {
     if(err) {
@@ -21,15 +22,6 @@ connection.connect((err) => {
     console.log('connected');
     app.listen(3000);
 })
-
-// const conn = 'mongodb+srv://jimmy1:21048Mongo@cluster0.4j3x4ma.mongodb.net/books?retryWrites=true&w=majority';
-// mongoose.connect(conn)
-// .then(() => {
-
-// })
-// .catch((err) => {
-//     console.log(err);
-// })
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
