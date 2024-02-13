@@ -3,16 +3,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Book = require('./models/Books');
 const mysql = require('mysql');
+require('dotenv').config();
 
 const app = express();
 
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    port: "3308",
-    user: "root",
-    password: "",
-    database: "listBooks"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.PORT
 });
 connection.connect((err) => {
     if(err) {

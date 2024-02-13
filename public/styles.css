@@ -3,6 +3,7 @@
     box-sizing: border-box;
     padding:0;
     margin:0;
+    font-family: Verdana;
 }
 body {
     height:100vh;
@@ -130,7 +131,9 @@ header .home-left p:first-of-type {
     color: #282A35;
 }
 .library-left a:hover {
-    background-color: #CCCCCC;
+    /* background-color: #CCCCCC; */
+    background-color: #04AA6D;
+    color:white;
 }
 .library-left a:focus {
     background-color: #04AA6D;
@@ -141,20 +144,19 @@ header .home-left p:first-of-type {
     color: #282A35;
 }
 .library-right {
-    width:90vw;
+    width:92vw;
     height:100%;
     overflow-y:scroll;
-
+    overflow-x:hidden;
 }
 .library-right #library-books {
     height:inherit;
     overflow-y:scroll;
-    height:inherit;
-    width:90vw;
+    width:98vw;
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    /* flex-wrap: wrap; */
-    gap:10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+    justify-content: center;
     padding:10px;
 }
 .library-right #library-add {
@@ -201,7 +203,7 @@ header .home-left p:first-of-type {
 }
 
 #library-books a {
-    width:200px;
+    width:300px;
     height:40vh;
     text-decoration:none;
     background-color: #E7E9EB;
@@ -240,10 +242,60 @@ header .home-left p:first-of-type {
     font-size:1.2rem;
 }
 
-@media screen and (max-width:800) {
+@media screen and (max-width:800px) {
+    body {
+        overflow:hidden;
+    }
     .home-right {
-        /* visibility:hidden; */
-        background-color: black;
+        visibility:hidden;
+    }
+    .main-body-bottom p {
+        font-size:1.0rem;
+    }
+
+    .library-left {
+        width:40px;
+    }
+    .library-right {
+        width:96vw;
+    }
+    .library-left a {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-left:5px;
+        gap:15px;
+        overflow-x:hidden;
+    }
+    .library-left a p{
+        /* visibility: hidden; */
+    }
+    .library-left a:hover {
+        width:100px;
+    }
+    .library-left a p:hover {
+        visibility: initial;
+    }
+    .library-right #library-books {
+        overflow-x:hidden;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    #library-books a {
+        width:300px;
+    }
+    .library-right #library-add {
+        padding-top:10vh;
+        justify-content:flex-start;
+    }
+    #library-add form {
+        width:85vw;
+    }
+    #library-add form input {
+        height:4vh;
+        width:75vw;
+        font-size:1.1rem;
+    }
+    #library-add form  button{
+        margin:0 auto;
     }
 }
 
