@@ -118,7 +118,8 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "test": "node app"
+    "test": "node app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
