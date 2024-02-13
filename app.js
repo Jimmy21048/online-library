@@ -20,7 +20,7 @@ connection.connect((err) => {
         console.log(err);
         return;
     }
-    // console.log('connected');
+    console.log('connected');
     app.listen(3000);
 })
 
