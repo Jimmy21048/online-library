@@ -19,7 +19,7 @@ connection.connect((err) => {
         return;
     }
     console.log('connected');
-    app.listen(10000);
+    app.listen(3000);
 })
 
 app.set('view engine', 'ejs');
