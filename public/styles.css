@@ -247,7 +247,12 @@ header .home-left p:first-of-type {
         overflow:hidden;
     }
     .home-right {
-        visibility:hidden;
+        /* visibility:hidden; */
+        width:20vw;
+    }
+    .home-right select {
+        background-color: orangered;
+        width:min-content;
     }
     .main-body-bottom p {
         font-size:1.0rem;
