@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <div class="regist-body">
+        <% if(userExists === 0) { %>
+            <div class="">
+                <h2>HELLO <%= details[0].member_fname %> <%= details[0].member_lname %></h2>
+    
+                <h4>You are now a member of MAI LAWD Library</h4>
+                <h5>Your library ID is </h5>
+                <h1><%=details[0].member_id %></h1>
+            </div>
+        <%} else { %>
+            <div class="">
+                <h2>SORRY, a user <%= details[0].member_fname %> <%= details[0].member_lname %></h2>
+    
+                <h2>Is already registered in the database with the ID <%=details[0].member_national_id %></h2>
+            </div>
+        <%}%>
+
+
+    </div>
+</body>
+</html>

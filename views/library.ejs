@@ -2,22 +2,25 @@
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 <body>
+    <%- include('./partials/header.ejs') %>
     <div class="library-body">
         <div class="library-left">
             <a href="/"><i class="fa-solid fa-house"></i> <p>Home</p></a>
+            <a href="#library-regist"><i class="fa-solid fa-user-plus"></i> <p>Regist</p></a>
             <a href="#library-books"><i class="fa-solid fa-book"></i> <p>Books</p></a>
             <a href="#library-add"><i class="fa-solid fa-folder-plus"></i> <p>Add</p></a>
+            <a href="#library-users"><i class="fa-solid fa-folder-plu"></i> <p>Users</p></a>
         </div>
         <div class="library-right">
             <div id="library-books">
                 <% books.forEach((book) => { %>
-                    <a href="/book/<%=book.book_id%>">
+                    <a href="/library/book/<%=book.book_id%>">
                         <div class="book">
-                            <!-- <h4>Book Name</h4> -->
+                            <h4>Title</h4>
                             <p><%=book.book_name %></p>
-                            <!-- <h4>Publisher</h4> -->
+                            <h4>Publisher</h4>
                             <p><%=book.book_publisher%></p>
-                            <!-- <h4>Count</h4> -->
+                            <h4>Count</h4>
                             <p><%=book.book_count%></p>
                         </div>  
                     </a>     
@@ -33,7 +36,43 @@
                     <button>UPDATE</button>
                 </form>
             </div>
+            <div id="library-regist">
+                <h3>MEMBERSHIP</h3>
+                <form action="/addMember" method="post">
+                    <label for="userFname">Enter First Name</label>
+                    <input type="text" name="userFname">
+                    <label for="userLname">Enter Last Name</label>
+                    <input type="text" name="userLname">
+                    <label for="userEmail">Enter Valid Email</label>
+                    <input type="text" name="userEmail">
+                    <label for="userId">Enter National ID</label>
+                    <input type="text" name="userId">
+                    <button>UPDATE</button>
+                </form>
+            </div>
+            <div id="library-users">
+                <h2>MEMBERS</h2>
+                <form action="/searchUser">
+                    <input type="text" placeholder="search">
+                    <button>SEARCH</button>
+                </form>
+                <div class="library-users-div">
+                    <% members.forEach((member) => { %>
+                        <a href="/library/user/<%=member.member_id%>">
+                                <p><%=member.member_fname %> <%=member.member_lname%> <i class="fa-solid fa-arrow-right-long"></i></p>
+                        </a>     
+                    <% }) %>
+                </div>
+
+            </div>
         </div>
     </div>
+    <!-- <script>
+        let libraryUsersDiv = document.querySelector('.library-users-div');
+        function searchUser() {
+            libraryUsersDiv.innerHTML = 
+            console.log();
+        }
+    </script> -->
 </body>
 </html>

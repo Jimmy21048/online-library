@@ -4,6 +4,8 @@
     padding:0;
     margin:0;
     font-family: Verdana;
+    -webkit-user-select: none;
+    user-select: none;
 }
 body {
     height:100vh;
@@ -21,13 +23,15 @@ body {
     background-position: center;
     z-index:-1;
     -webkit-filter: blur(3px);
-    filter: blur(4px);
+    filter: blur(3px);
 }
 header {
     padding:10px;
+    padding-bottom:20px;
     height:10vh;
     display:flex;
     justify-content:space-between;
+    background-color: teal;
 }
 header .home-left p:first-of-type {
     background-color: orangered;
@@ -122,7 +126,7 @@ header .home-left p:first-of-type {
     background-color: #E7E9EB;
 }
 .library-left a {
-    height:20vh;
+    height:15vh;
     text-decoration:none;
     display:flex;
     flex-direction: column;
@@ -159,24 +163,24 @@ header .home-left p:first-of-type {
     justify-content: center;
     padding:10px;
 }
-.library-right #library-add {
+.library-right #library-add ,#library-regist{
     height:inherit;
     display: flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
 }
-#library-add form {
+#library-add form, #library-regist form {
     display: flex;
     background-color: #E7E9EB;
     flex-direction:column;
     width:500px;
-    height:300px;
+    height:max-content;
     padding:20px;
     border-radius: 10px;
     gap:20px;
 }
-#library-add form input {
+#library-add form input ,#library-regist form input{
     height:5vh;
     width:300px;
     color:#A52A2A;
@@ -184,16 +188,16 @@ header .home-left p:first-of-type {
     border-left:3px solid #04AA6D;
     font-size:1.2rem;
 }
-#library-add form input:focus {
+#library-add form input:focus, #library-regist form input:focus {
     outline:none;
 }
-#library-add form label {
+#library-add form label , #library-regist form label{
     width:300px;
     font-size:1.2rem;
     display:flex;
     justify-content:space-between;
 }
-#library-add form  button{
+#library-add form  button, #library-regist form button{
     width:100px;
     height:5vh;
     background-color: #04AA6D;
@@ -226,29 +230,95 @@ header .home-left p:first-of-type {
     background-color: #fff;
 }
 .book h4 {
-    color: #000;
-
+    color: #E7E9EB;
     margin-left:2px;
     height:5vh;
     text-align:center;
     font-size:1.3rem;
+    border-bottom:3px solid #04AA6D;
 }
 .book p {
-    border-bottom:3px solid #04AA6D;
     margin-left:2px;
     height:5vh;
     text-align: center;
     color: #A52A2A;
     font-size:1.2rem;
 }
+#library-regist {
+    height:inherit;
+}
+.regist-body {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:90vh;
+    background-color: orangered;
+}
+.regist-body div {
+    height:50%;
+    display: flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+}
+#library-users {
+    height:inherit;
+    width:inherit;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#library-users h2 {
+    text-align:center;
+    height:5vh;
+}
+#library-users input {
+    height:5vh;
+    width:200px;
+    margin:0 auto;
+    border-radius: 10px;
+    padding-left:5px;
+}
+#library-users .library-users-div {
+    padding:10px;
+    border:1px solid;
+    height:80vh;
+    overflow-y:scroll;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap:10px;
+    align-content: first baseline;
+}
+#library-users div a {
+    height:5vh;
+    text-decoration:none;
+    background-color: #E7E9EB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    color: #282A35;
+    font-weight:800;
+}
+
 
 @media screen and (max-width:800px) {
+    header {
+        overflow-x:hidden;
+    }
     body {
         overflow:hidden;
     }
+    .home-left p {
+        font-size:0.9rem;
+    }
     .home-right {
         /* visibility:hidden; */
-        width:20vw;
+        width:200px;
+        padding-right:20px;
+    }
+    .home-right a {
+        font-size:0.8rem;
     }
     .home-right select {
         background-color: orangered;
@@ -259,7 +329,7 @@ header .home-left p:first-of-type {
     }
 
     .library-left {
-        width:40px;
+        width:43px;
     }
     .library-right {
         width:96vw;
@@ -270,9 +340,6 @@ header .home-left p:first-of-type {
         padding-left:5px;
         gap:15px;
         overflow-x:hidden;
-    }
-    .library-left a p{
-        /* visibility: hidden; */
     }
     .library-left a:hover {
         width:100px;
@@ -287,20 +354,72 @@ header .home-left p:first-of-type {
     #library-books a {
         width:300px;
     }
-    .library-right #library-add {
+    .library-right #library-add, #library-regist {
         padding-top:10vh;
         justify-content:flex-start;
     }
-    #library-add form {
+    #library-add form, #library-regist form {
         width:85vw;
     }
-    #library-add form input {
+    #library-add form input, #library-regist form input {
         height:4vh;
         width:75vw;
         font-size:1.1rem;
     }
-    #library-add form  button{
+    #library-add form  button, #library-regist form button{
         margin:0 auto;
     }
+
+    .regist-body div {
+        height:20%;
+    }
+    .regist-body div * {
+        font-size:0.9rem;
+        text-align: center;
+        padding:0 10px;
+    }
+}
+@media screen and (max-width:400px) {
+    .home-right {
+        width:180px;
+        padding-right:10px;
+    }
+    .home-right a {
+        font-size:0.6rem;
+    }
+    .home-left p {
+        font-size:0.7rem;
+    }
+    .library-left {
+        width:35px;
+    }
+    .library-left a .fa-solid {
+        font-size:20px;
+    }
+    .library-right #library-books {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    #library-books a {
+        width:200px;
+    }
+    #library-books a div * {
+        font-size:0.9rem;
+    }
+    .library-right #library-add, #library-regist {
+        padding-top:10vh;
+        justify-content:flex-start;
+    }
+    #library-add form input, #library-regist form input {
+        height:3vh;
+        width:70vw;
+        font-size:0.9rem;
+    }
+    #library-add form label , #library-regist form label{
+        width:300px;
+        font-size:0.9rem;
+        display:flex;
+        justify-content:space-between;
+    }
+
 }
 
