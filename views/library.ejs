@@ -9,7 +9,7 @@
             <a href="#library-regist"><i class="fa-solid fa-user-plus"></i> <p>Regist</p></a>
             <a href="#library-books"><i class="fa-solid fa-book"></i> <p>Books</p></a>
             <a href="#library-add"><i class="fa-solid fa-folder-plus"></i> <p>Add</p></a>
-            <a href="#library-users"><i class="fa-solid fa-folder-plu"></i> <p>Users</p></a>
+            <a href="#library-users"><i class="fa-solid fa-users"></i> <p>Users</p></a>
         </div>
         <div class="library-right">
             <div id="library-books">
@@ -52,12 +52,13 @@
             </div>
             <div id="library-users">
                 <h2>MEMBERS</h2>
-                <form action="/searchUser">
-                    <input type="text" placeholder="search">
+                <form action="/searchUser" method="post">
+                    <input type="text" placeholder="search" name="userid">
                     <button>SEARCH</button>
                 </form>
                 <div class="library-users-div">
-                    <% members.forEach((member) => { %>
+                    <%
+                     members.forEach((member) => { %>
                         <a href="/library/user/<%=member.member_id%>">
                                 <p><%=member.member_fname %> <%=member.member_lname%> <i class="fa-solid fa-arrow-right-long"></i></p>
                         </a>     
