@@ -3,5 +3,25 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/header.ejs') %>
+    <div class="user-body">
+        <div class="card">
+            <div class="user-top">
+                <div class="user-image">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-right">
+                    <div><p>First Name</p> <p><%= details[0].member_fname %></p></div>
+                    <div><p>Last Name</p><p><%= details[0].member_lname %></p></div>
+                    <div><p>Email</p><p><%= details[0].member_email %></p></div>
+                    <div><p>ID card</p><p><%= details[0].member_national_id %></p></div>
+                    <div><p>Library ID</p><p><%= details[0].member_id %></p></div>
+                </div>
+            </div>
+            <hr>
+            <div class="user-bottom">
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -135,7 +135,6 @@ header .home-left p:first-of-type {
     color: #282A35;
 }
 .library-left a:hover {
-    /* background-color: #CCCCCC; */
     background-color: #04AA6D;
     color:white;
 }
@@ -169,6 +168,7 @@ header .home-left p:first-of-type {
     flex-direction:column;
     align-items:center;
     justify-content:center;
+    background-color:#282A35;
 }
 #library-add form, #library-regist form {
     display: flex;
@@ -246,6 +246,8 @@ header .home-left p:first-of-type {
 }
 #library-regist {
     height:inherit;
+    background-color:#282A35;
+    border-bottom:1px ridge;
 }
 .regist-body {
     display:flex;
@@ -301,6 +303,61 @@ header .home-left p:first-of-type {
     font-weight:800;
 }
 
+.user-body {
+    height:90vh;
+    width:100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x:hidden;
+}
+.user-body .card {
+    height:500px;
+    width:700px;
+    border-radius:20px;
+    background-color:#282A35;
+}
+.user-top {
+    height:250px;
+    display:flex;
+}
+.user-image {
+    width:40%;
+    height:inherit;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-user {
+    font-size:200px;
+    color: #fff;
+} 
+.user-right {
+    width:60%;
+    height:inherit;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.user-right div {
+    height:5vh;
+    display: flex;
+    justify-content: space-between;
+    padding:0 5px;
+}
+.user-right div p {
+    color: #fff;
+    width:40%;
+    min-width: min-content;
+    font-weight:800;
+    border:1px solid #A52A2A;
+    padding:5px 0;
+    border-radius: 5px;
+}
+#check, .btn1, .btn2, .library-left-top {
+    display:none;
+}
+
 
 @media screen and (max-width:800px) {
     header {
@@ -308,6 +365,71 @@ header .home-left p:first-of-type {
     }
     body {
         overflow:hidden;
+    }
+    #home-link {
+        display:none;
+    }
+    #check {
+    
+        position:absolute;
+    }
+    .btn1 {
+        display:initial;
+        position:absolute;
+        top:11vh;
+        left:10px;
+        cursor: pointer;
+    }
+    .btn1 .fa-solid {
+        font-size:25px;
+    }
+    .btn2 {
+        display:initial;
+        position:absolute;
+        left:150px;
+        top:17px;
+    }
+
+    .library-left {
+        width:200px;
+        height:90vh;
+        position:absolute;
+        left:-200px;
+        top:10vh;
+    }
+    .library-left label {
+        cursor:pointer;
+    }
+    .library-left .btn1 .fa-solid:hover {
+        background-color:#E7E9EB;
+        padding:5px;
+        border-radius: 50%;
+    }
+
+    .library-left-top {
+        display:initial;
+        position:absolute;
+        width:200px;
+        height:10vh;
+    }
+    .library-left-bottom {
+        position:absolute;
+        top:10vh;
+        width:200px;
+        height:max-content;
+    }
+    .library-left-top a {
+        display: initial;
+        position:absolute;
+        left:2%;
+        top:14px;
+        font-size:24px;
+    }
+    #check:checked ~ .library-left {
+        left:0px;
+    }
+    #check:checked ~ .btn1 {
+        opacity:0;
     }
     .home-left p {
         font-size:0.9rem;
@@ -328,11 +450,13 @@ header .home-left p:first-of-type {
         font-size:1.0rem;
     }
 
-    .library-left {
+    /* .library-left {
         width:43px;
-    }
+    } */
     .library-right {
-        width:96vw;
+        width:100vw;
+        height: 98vh;
+        padding-top:20px;
     }
     .library-left a {
         flex-direction: row;
@@ -342,7 +466,10 @@ header .home-left p:first-of-type {
         overflow-x:hidden;
     }
     .library-left a:hover {
-        width:100px;
+        width:200px;
+    }
+    .library-left-top a:hover {
+        background-color: initial;
     }
     .library-left a p:hover {
         visibility: initial;
@@ -378,6 +505,30 @@ header .home-left p:first-of-type {
         text-align: center;
         padding:0 10px;
     }
+
+    .user-body .card {
+        height:max-content;
+        width:95vw;
+    }
+    .user-top {
+        height:max-content;
+        flex-direction: column;
+    }
+    .user-image {
+        width:20%;
+    }
+    .fa-user {
+        font-size:100px;
+        color: #fff;
+    } 
+    .user-right {
+        width:100%;
+        height:inherit;
+    }
+    .user-right div p {
+        width:45%;
+        font-size:0.9rem;
+    }
 }
 @media screen and (max-width:400px) {
     .home-right {
@@ -389,9 +540,6 @@ header .home-left p:first-of-type {
     }
     .home-left p {
         font-size:0.7rem;
-    }
-    .library-left {
-        width:35px;
     }
     .library-left a .fa-solid {
         font-size:20px;

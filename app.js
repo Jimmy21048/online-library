@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.PORT
+    // port: process.env.PORT
 });
 connection.connect((err) => {
     if(err) {
@@ -36,7 +36,7 @@ app.get('/library',(req, res) => {
             console.log(err);
             return;
         }
-        const query1 = "SELECT member_fname, member_lname FROM members;";
+        const query1 = "SELECT member_fname, member_lname, member_id FROM members;";
         connection.query(query1, (err, results1) => {
             if(err) {
                 console.log(err);
@@ -79,6 +79,7 @@ app.get('/library/user/:id', (req, res) => {
             console.log(err);
             return;
         }
+        console.log(result);
         res.render('user', {details: result});
     })
 })
