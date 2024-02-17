@@ -1,5 +1,4 @@
 * {
-    /* border:1px solid; */
     box-sizing: border-box;
     padding:0;
     margin:0;
@@ -114,7 +113,6 @@ header .home-left p:first-of-type {
     display:flex;
     height:inherit;
     width:inherit;
-    /* background-color: hsl(0, 0%, 10%); */
 }
 .library-left {
     width:8vw;
@@ -149,18 +147,18 @@ header .home-left p:first-of-type {
 .library-right {
     width:92vw;
     height:100%;
-    overflow-y:scroll;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 .library-right #library-books {
     height:inherit;
     overflow-y:scroll;
-    width:98vw;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap:20px;
+    overflow-x: hidden;
+    width:97vw;
+    display:flex;
+    flex-wrap: wrap;
     justify-content: center;
-    padding:10px;
+    gap:10px;
+    padding:20px;
 }
 .library-right #library-add ,#library-regist{
     height:inherit;
@@ -205,10 +203,9 @@ header .home-left p:first-of-type {
     border:none;
     border-radius: 5px;
 }
-
 #library-books a {
-    width:300px;
-    height:40vh;
+    width:200px;
+    height:30vh;
     text-decoration:none;
     background-color: #E7E9EB;
     color:#afafaf;
@@ -218,24 +215,26 @@ header .home-left p:first-of-type {
     align-items: center;
     border-radius: 10px;
 }
+#library-books a:hover {
+    background-color: rgb(206, 201, 201);
+    opacity:.7;
+}
 
 #library-books a .book {
-    height:90%;
-    width:90%;
+    height:95%;
+    width:95%;
     margin:0;
+    border-radius: 10px;
     display:flex;
     flex-direction:column;
     justify-content:space-around;
     align-items: center;
     background-color: #fff;
 }
-.book h4 {
-    color: #E7E9EB;
-    margin-left:2px;
-    height:5vh;
-    text-align:center;
-    font-size:1.3rem;
-    border-bottom:3px solid #04AA6D;
+
+.book div .fa-solid{
+    font-size: 40px;
+    color: #282A35;
 }
 .book p {
     margin-left:2px;
@@ -410,11 +409,11 @@ header .home-left p:first-of-type {
         display:initial;
         position:absolute;
         width:200px;
-        height:10vh;
+        height:7vh;
     }
     .library-left-bottom {
         position:absolute;
-        top:10vh;
+        top:7vh;
         width:200px;
         height:max-content;
     }
@@ -435,7 +434,6 @@ header .home-left p:first-of-type {
         font-size:0.9rem;
     }
     .home-right {
-        /* visibility:hidden; */
         width:200px;
         padding-right:20px;
     }
@@ -450,9 +448,6 @@ header .home-left p:first-of-type {
         font-size:1.0rem;
     }
 
-    /* .library-left {
-        width:43px;
-    } */
     .library-right {
         width:100vw;
         height: 98vh;
@@ -462,6 +457,7 @@ header .home-left p:first-of-type {
         flex-direction: row;
         justify-content: flex-start;
         padding-left:5px;
+        height:6vh;
         gap:15px;
         overflow-x:hidden;
     }
@@ -475,11 +471,18 @@ header .home-left p:first-of-type {
         visibility: initial;
     }
     .library-right #library-books {
+        width:100vw;
         overflow-x:hidden;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     #library-books a {
-        width:300px;
+        width:150px;
+        margin:0;
+        height:20vh;
+        border:1px solid;
+        border:1px solid;
+    }
+    #library-books a * {
+        font-size: 17px;
     }
     .library-right #library-add, #library-regist {
         padding-top:10vh;
@@ -544,11 +547,8 @@ header .home-left p:first-of-type {
     .library-left a .fa-solid {
         font-size:20px;
     }
-    .library-right #library-books {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
     #library-books a {
-        width:200px;
+        width:150px;
     }
     #library-books a div * {
         font-size:0.9rem;

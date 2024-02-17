@@ -13,6 +13,7 @@
             </div>
             <div class="library-left-bottom">
                 <a href="/" id="home-link"><i class="fa-solid fa-house"></i>    <p>Home</p></a>
+                <hr>
                 <a href="#library-regist"><i class="fa-solid fa-user-plus"></i> <p>Regist</p></a>
                 <a href="#library-books"><i class="fa-solid fa-book"></i> <p>Books</p></a>
                 <a href="#library-add"><i class="fa-solid fa-folder-plus"></i> <p>Add</p></a>
@@ -25,12 +26,9 @@
                 <% books.forEach((book) => { %>
                     <a href="/library/book/<%=book.book_id%>">
                         <div class="book">
-                            <h4>Title</h4>
                             <p><%=book.book_name %></p>
-                            <h4>Publisher</h4>
-                            <p><%=book.book_publisher%></p>
-                            <h4>Count</h4>
-                            <p><%=book.book_count%></p>
+                            <div><i class="fa-solid fa-book-open"></i></div>
+                            <h6>View</h6>
                         </div>  
                     </a>     
                 <% }) %>
