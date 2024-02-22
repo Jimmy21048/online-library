@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('./partials/head.ejs') %>
-<body>
+<body class="book-main">
     <%- include('./partials/header.ejs')%>
     <div class="book-hero">
         <div class="book-card">
             <div class="book-icon">
                 <i class="fa-solid fa-book-open" ></i>
+                <div class="right">
+                    <div><p>Name</p> <p><%= result[0].book_name%></p></div>
+                    <div><p>Author</p> <p><%= result[0].book_author%></p></div>
+                </div>
             </div>
             <div class="book-content">
-                <% result.forEach((res) => {%>
-                    <div><p>Name</p> <p><%= res.book_name%></p></div>
-                    <div><p>Author</p> <p><%= res.book_author%></p></div>
-                    <div><p>Language</p> <p><%= res.book_lang%></p></div>
-                    <div><p>Pages</p> <p><%= res.book_pages%></p></div>
-                    <div><p>Year</p> <p><%= res.book_year%></p></div>
-                    <div><p>Rating</p> <p><%= res.book_rating%></p></div>
-                    <div><p>Subject</p> <p><%= res.book_subject%></p></div>
-                    <div><p>Publisher</p> <p><%= res.book_publisher%></p></div>
-                <%}) %>
-
+                <div class="book-content-left">
+                    <div><p>Language</p> <p><%= result[0].book_lang%></p></div>
+                    <div><p>Pages</p> <p><%= result[0].book_pages%></p></div>
+                    <div><p>Year</p> <p><%= result[0].book_year%></p></div>
+                    <div><p>Rating</p> <p><%= result[0].book_rating%></p></div>
+                    <div><p>Subject</p> <p><%= result[0].book_subject%></p></div>
+                    <div><p>Publisher</p> <p><%= result[0].book_publisher%></p></div>
+                </div>
+                <div class="book-content-right">
+                    <div><p>Description</p> <p><%= result[0].book_description%></p></div>
+                    <div><p>Category</p> <p><%= result[0].book_category%></p></div>
+                </div>
             </div>
         </div>
     </div>

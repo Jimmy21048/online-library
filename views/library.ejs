@@ -23,6 +23,11 @@
         </div>
         <div class="library-right">
             <div id="library-books">
+                <% if(books.length === 0) {%>
+                    <div class="book">
+                        <h1>No books in the library... Please import </h1> 
+                    </div>
+                <% }%>
                 <% books.forEach((book) => { %>
                     <a href="/library/book/<%=book.book_id%>">
                         <div class="book">
@@ -74,6 +79,7 @@
             </div>
         </div>
     </div>
+
     <script>
 
         function handleClick() {
@@ -81,23 +87,27 @@
             let bookName = document.getElementById('bookname').value;
             let myBook = document.getElementById('mybooks');
             myBook.innerHTML = 'Searching... ensure you are connected to the internet! Also, be patient... wacha ichukue time yake';
-            fetch(`https://openlibrary.org/search.json?q=${bookName}&limit=4`)
+            // fetch(`https://openlibrary.org/search.json?q=${bookName}&limit=4`)
+            fetch(`https://www.googleapis.com/books/v1/volumes?q=${bookName}&limit=4`)
             .then(response => response.json())
             .then((data) => {
                 const booksArray = [];
-                console.log(data);
-                data.docs.forEach((book) => {
+                console.log(data.items);
+                data.items.forEach((book) => {
                     booksArray.push(
                         [`
                             <div>
                                 <form action='/addBook' method='post'>
-                                <input  hidden type='text' name='bKey' value='${book.key === undefined ? 'key0' : book.key.split('').splice(7,).join('')}' />
-                                <input  type='text' name='bName' value='${book.title.replace("'","&lsquo;")}' />
-                                <input  type='text' name='author' value='${book.author_name === undefined ? 'Author0' : book.author_name}' />
-                                <input  hidden type='text' name='lang' value='${book.language === undefined ? 'language0' : book.language.splice(4)}' />
-                                <input  hidden type='number' name='pages' value='${book.number_of_pages_median === undefined ? 0 : book.number_of_pages_median}' />
-                                <input  hidden type='number' name='year' value='${book.first_publish_year === undefined ? 0 : book.first_publish_year}' />
-                                <input  hidden type='text' name='publisher' value='${book.publisher === undefined ? 'publisher0' : book.publisher[0]}' />
+                                <input  hidden type='text' name='bKey' value='${book.id === undefined ? 'key0' : book.id}' />
+                                <input  type='text' name='bName' value='${book.volumeInfo.title.replace("'","&lsquo;")}' />
+                                <input  type='text' name='author' value='${book.volumeInfo.authors === undefined ? 'no author' : book.volumeInfo.authors}' />
+                                <input  hidden type='text' name='lang' value='${book.volumeInfo.language === undefined ? 'no language' : book.volumeInfo.language}' />
+                                <input  hidden type='number' name='pages' value='${book.volumeInfo.pageCount === undefined ? 0 : book.volumeInfo.pageCount }' />
+                                <input  hidden type='text' name='year' value='${book.volumeInfo.publishedDate  === undefined ? 0 : book.volumeInfo.publishedDate}' />
+                                <input  hidden type='text' name='publisher' value='${book.volumeInfo.publisher === undefined ? 'no publisher' : book.volumeInfo.publisher}' />
+                                <input  hidden type='text' name='description' value='${book.volumeInfo.description === undefined ? 'no description' : book.volumeInfo.description}' />
+                                <input  hidden type='text' name='category' value='${book.volumeInfo.categories === undefined ? 'no categories' : book.volumeInfo.categories}' />
+                                <textarea  hidden name='rating' value='${book.volumeInfo.averageRating === undefined ? 3 : book.volumeInfo.averageRating}'></textarea>
                                 <button>ADD</button>
                                 </form>
                             </div>`

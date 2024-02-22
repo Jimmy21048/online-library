@@ -54,7 +54,7 @@ app.get('/library',(req, res) => {
 app.get('/library/book/:id', (req, res) => {
     const id = req.params.id;
 
-    const query = "SELECT book_name, book_author, book_lang, book_pages, book_year, book_rating, book_subject, book_publisher FROM books WHERE book_id = ?;";
+    const query = "SELECT book_name, book_author, book_lang, book_pages, book_year, book_rating, book_rating, book_subject, book_publisher, book_description, book_category FROM books WHERE book_id = ?;";
     const values = [id];
     connection.query(query, values, (err, results) => {
         if(err) {
@@ -133,9 +133,9 @@ app.post('/addBook', (req, res) => {
             res.redirect('library');
         }
         else {
-            const query1 = "INSERT INTO books (book_id, book_name, book_author, book_lang, book_pages, book_year, book_publisher) VALUES (?,?,?,?,?,?,?);";
+            const query1 = "INSERT INTO books (book_id, book_name, book_author, book_lang, book_pages, book_year, book_rating, book_publisher, book_description,book_category) VALUES (?,?,?,?,?,?,?,?,?,?);";
             const dr = req.body;
-            const values = [dr.bKey, dr.bName, dr.author, dr.lang, dr.pages, dr.year, dr.publisher];
+            const values = [dr.bKey, dr.bName, dr.author, dr.lang, dr.pages, dr.year, dr.rating, dr.publisher, dr.description, dr.category];
             connection.query(query1,values,(err) => {
                 if(err) {
                     console.log(err);
