@@ -81,7 +81,7 @@
             let bookName = document.getElementById('bookname').value;
             let myBook = document.getElementById('mybooks');
             myBook.innerHTML = 'Searching... ensure you are connected to the internet! Also, be patient... wacha ichukue time yake';
-            fetch(`http://openlibrary.org/search.json?q=${bookName}&limit=4`)
+            fetch(`https://openlibrary.org/search.json?q=${bookName}&limit=4`)
             .then(response => response.json())
             .then((data) => {
                 const booksArray = [];
