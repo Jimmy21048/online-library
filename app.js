@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 app.get('/library',(req, res) => {
-    const query = "SELECT book_id, book_name, book_publisher, COUNT(*) AS book_count FROM books GROUP BY book_name;";
+    const query = "SELECT book_id, book_name FROM books;";
     connection.query(query, (err, results) => {
         if(err) {
             console.log(err);
@@ -44,7 +44,6 @@ app.get('/library',(req, res) => {
             }
             res.render('library', {books: results, members: results1});
         })
-
     });
 
 
@@ -55,14 +54,14 @@ app.get('/library',(req, res) => {
 app.get('/library/book/:id', (req, res) => {
     const id = req.params.id;
 
-    const query = "SELECT * FROM books WHERE book_id = ?;";
+    const query = "SELECT book_name, book_author, book_lang, book_pages, book_year, book_rating, book_subject, book_publisher FROM books WHERE book_id = ?;";
     const values = [id];
-    connection.query(query, values, (err, result) => {
+    connection.query(query, values, (err, results) => {
         if(err) {
             console.log(err);
             return;
         }
-        res.render('book', {details: result});
+        res.render('book', {result : results});
     })
 
 })
@@ -79,7 +78,7 @@ app.get('/library/user/:id', (req, res) => {
             console.log(err);
             return;
         }
-        console.log(result);
+        // console.log(result);
         res.render('user', {details: result});
     })
 })
@@ -125,16 +124,29 @@ app.post('/addMember', (req, res) => {
 })
 
 app.post('/addBook', (req, res) => {
-    const query = "INSERT INTO books (book_name, book_publisher) VALUES (?,?);";
-    const dr = req.body;
-    const values = [`${dr.bookName}`, `${dr.bookPublisher}`];
-    connection.query(query,values,(err) => {
-        if(err) {
-            console.log(err);
-            return;
+    // console.log(req.body);
+    const id0 = req.body;
+    const query = "SELECT * FROM books WHERE book_id = ?;";
+    const values0 = [id0.bKey];
+    connection.query(query, values0,(err, results) => {
+        if(results.length >0) {
+            res.redirect('library');
         }
-        res.redirect('library');
+        else {
+            const query1 = "INSERT INTO books (book_id, book_name, book_author, book_lang, book_pages, book_year, book_publisher) VALUES (?,?,?,?,?,?,?);";
+            const dr = req.body;
+            const values = [dr.bKey, dr.bName, dr.author, dr.lang, dr.pages, dr.year, dr.publisher];
+            connection.query(query1,values,(err) => {
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                res.redirect('library');
+            })
+        }
     })
+
+
 })
 app.use((req, res) => {
     res.status(404).render('404');

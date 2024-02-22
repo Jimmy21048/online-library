@@ -16,7 +16,7 @@
                 <hr>
                 <a href="#library-regist"><i class="fa-solid fa-user-plus"></i> <p>Regist</p></a>
                 <a href="#library-books"><i class="fa-solid fa-book"></i> <p>Books</p></a>
-                <a href="#library-add"><i class="fa-solid fa-folder-plus"></i> <p>Add</p></a>
+                <a href="#library-add"><i class="fa-solid fa-download"></i> <p>Import</p></a>
                 <a href="#library-users"><i class="fa-solid fa-users"></i> <p>Users</p></a>
             </div>
 
@@ -26,7 +26,7 @@
                 <% books.forEach((book) => { %>
                     <a href="/library/book/<%=book.book_id%>">
                         <div class="book">
-                            <p><%=book.book_name %></p>
+                            <p><%=book.book_name[0].toUpperCase().concat(book.book_name.slice(1,))%></p>
                             <div><i class="fa-solid fa-book-open"></i></div>
                             <h6>View</h6>
                         </div>  
@@ -35,13 +35,12 @@
             </div>
             <div id="library-add">
                 <h3>ADD BOOK</h3>
-                <form action="/addBook" method="post">
-                    <label for="bookName">Enter Book Title</label>
-                    <input type="text" name="bookName">
-                    <label for="bookName">Enter Book Publisher</label>
-                    <input type="text" name="bookPublisher">
-                    <button>UPDATE</button>
-                </form>
+                <div class="form1">
+                    <input type="text" id="bookname" placeholder="Enter book name...">
+                    <button onclick="handleClick()">Search</button>
+                </div>
+
+                <div id="mybooks" >Want to import books? Search for book</div>
             </div>
             <div id="library-regist">
                 <h3>MEMBERSHIP</h3>
@@ -67,7 +66,7 @@
                     <%
                      members.forEach((member) => { %>
                         <a href="/library/user/<%=member.member_id%>">
-                                <p><%=member.member_fname %> <%=member.member_lname%> <i class="fa-solid fa-arrow-right-long"></i></p>
+                                <p><%=member.member_fname[0].toUpperCase().concat(member.member_fname.slice(1,)) %> <%=member.member_lname[0].toUpperCase().concat(member.member_lname.slice(1,))%> <i class="fa-solid fa-arrow-right-long"></i></p>
                         </a>     
                     <% }) %>
                 </div>
@@ -75,12 +74,45 @@
             </div>
         </div>
     </div>
-    <!-- <script>
-        let libraryUsersDiv = document.querySelector('.library-users-div');
-        function searchUser() {
-            libraryUsersDiv.innerHTML = 
-            console.log();
+    <script>
+
+        function handleClick() {
+
+            let bookName = document.getElementById('bookname').value;
+            let myBook = document.getElementById('mybooks');
+            myBook.innerHTML = 'Searching... ensure you are connected to the internet! Also, be patient... wacha ichukue time yake';
+            fetch(`http://openlibrary.org/search.json?q=${bookName}&limit=4`)
+            .then(response => response.json())
+            .then((data) => {
+                const booksArray = [];
+                console.log(data);
+                data.docs.forEach((book) => {
+                    booksArray.push(
+                        [`
+                            <div>
+                                <form action='/addBook' method='post'>
+                                <input  hidden type='text' name='bKey' value='${book.key === undefined ? 'key0' : book.key.split('').splice(7,).join('')}' />
+                                <input  type='text' name='bName' value='${book.title.replace("'","&lsquo;")}' />
+                                <input  type='text' name='author' value='${book.author_name === undefined ? 'Author0' : book.author_name}' />
+                                <input  hidden type='text' name='lang' value='${book.language === undefined ? 'language0' : book.language.splice(4)}' />
+                                <input  hidden type='number' name='pages' value='${book.number_of_pages_median === undefined ? 0 : book.number_of_pages_median}' />
+                                <input  hidden type='number' name='year' value='${book.first_publish_year === undefined ? 0 : book.first_publish_year}' />
+                                <input  hidden type='text' name='publisher' value='${book.publisher === undefined ? 'publisher0' : book.publisher[0]}' />
+                                <button>ADD</button>
+                                </form>
+                            </div>`
+                        ]
+                    )
+                });
+                // console.log(booksArray);
+            myBook.innerHTML = booksArray.map((book) => {
+                return book;
+            }).join('');
+            }).catch((err) => {
+                console.log(err);
+            })
         }
-    </script> -->
+
+    </script>
 </body>
 </html>

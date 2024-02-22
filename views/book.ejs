@@ -3,5 +3,25 @@
     <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/header.ejs')%>
+    <div class="book-hero">
+        <div class="book-card">
+            <div class="book-icon">
+                <i class="fa-solid fa-book-open" ></i>
+            </div>
+            <div class="book-content">
+                <% result.forEach((res) => {%>
+                    <div><p>Name</p> <p><%= res.book_name%></p></div>
+                    <div><p>Author</p> <p><%= res.book_author%></p></div>
+                    <div><p>Language</p> <p><%= res.book_lang%></p></div>
+                    <div><p>Pages</p> <p><%= res.book_pages%></p></div>
+                    <div><p>Year</p> <p><%= res.book_year%></p></div>
+                    <div><p>Rating</p> <p><%= res.book_rating%></p></div>
+                    <div><p>Subject</p> <p><%= res.book_subject%></p></div>
+                    <div><p>Publisher</p> <p><%= res.book_publisher%></p></div>
+                <%}) %>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>
