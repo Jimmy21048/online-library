@@ -152,7 +152,8 @@ header .home-left img {
     width:97vw;
     display:flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    align-content:flex-start;
+    justify-content: center;
     gap:10px;
     padding:20px;
 }
@@ -345,7 +346,6 @@ header .home-left img {
 }
 #library-users .library-users-div {
     padding:10px;
-    border:1px solid;
     height:80vh;
     overflow-y:scroll;
     display:grid;
@@ -513,12 +513,6 @@ header .home-left img {
     border: 1px solid;
     border-radius: 10px;
 }
-.book-content div p:first-of-type {
-    /* width:30%; */
-}
-.book-content div p:last-of-type {
-    /* width:70%; */
-}
 
 
 
@@ -549,15 +543,18 @@ header .home-left img {
     .btn2 {
         display:initial;
         position:absolute;
-        left:150px;
+        left:90%;
         top:17px;
+    }
+    .btn2 .fa-solid {
+        font-size:25px;
     }
 
     .library-left {
-        width:200px;
+        width:95vw;
         height:90vh;
         position:absolute;
-        left:-200px;
+        left:-95vw;
         top:10vh;
     }
     .library-left label {
@@ -572,21 +569,24 @@ header .home-left img {
     .library-left-top {
         display:initial;
         position:absolute;
-        width:200px;
+        width:inherit;
         height:7vh;
     }
     .library-left-bottom {
         position:absolute;
-        top:7vh;
-        width:200px;
+        top:10vh;
+        width:100%;
         height:max-content;
     }
     .library-left-top a {
         display: initial;
         position:absolute;
-        left:2%;
-        top:14px;
+        /* left:2%; */
+        top:15px;
         font-size:24px;
+    }
+    .library-left-top a .fa-solid {
+        font-size:25px !important;
     }
     #check:checked ~ .library-left {
         left:0px;
@@ -620,6 +620,7 @@ header .home-left img {
     }
     .library-left a {
         flex-direction: row;
+        width:100%;
         justify-content: flex-start;
         padding-left:5px;
         height:10vh;
@@ -627,7 +628,7 @@ header .home-left img {
         overflow-x:hidden;
     }
     .library-left a:hover {
-        width:200px;
+        width:100%;
     }
     .library-left-top a:hover {
         background-color: initial;
