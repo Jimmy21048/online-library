@@ -153,9 +153,10 @@ header .home-left img {
     display:flex;
     flex-wrap: wrap;
     align-content:flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap:10px;
     padding:20px;
+    padding-bottom:10vh;
 }
 .library-right #library-add {
     height:inherit;
@@ -296,6 +297,43 @@ header .home-left img {
     align-items: center;
     background-color: #fff;
 }
+/*  */
+.book-special {
+    height:190px;
+    width:300px;
+    border:1px solid;
+    border-radius:10px;
+    display:flex;
+    flex-direction: column;
+    align-items:Center;
+    background-color: black;
+    color:white;
+}
+.book-special p {
+    margin-top:5px;
+    height:15%;
+}
+.book-special form {
+    height:80%;
+    width:inherit;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.book-special form input {
+    height:4vh;
+    border:none;
+}
+.book-special form button {
+    padding:5px 10px;
+    border-radius:10px;
+    cursor:pointer;
+    background-color: #A52A2A;
+    font-weight:700;
+}
+
+/*  */
 
 .book div .fa-solid{
     font-size: 40px;
@@ -693,6 +731,15 @@ header .home-left img {
     .user-right div p {
         width:95%;
         font-size:0.9rem;
+    }
+    #mybooks {
+        margin-bottom:10vh;
+    }
+    #mybooks div {
+        width:300px;
+    }
+    #mybooks form {
+        width:100%;
     }
 
     .book-card {

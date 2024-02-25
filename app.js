@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 app.get('/library',(req, res) => {
-    const query = "SELECT book_id, book_name FROM books;";
+    const query = "SELECT book_id, book_name, book_count FROM books;";
     connection.query(query, (err, results) => {
         if(err) {
             console.log(err);
@@ -133,9 +133,9 @@ app.post('/addBook', (req, res) => {
             res.redirect('library');
         }
         else {
-            const query1 = "INSERT INTO books (book_id, book_name, book_author, book_lang, book_pages, book_year, book_rating, book_publisher, book_description,book_category) VALUES (?,?,?,?,?,?,?,?,?,?);";
+            const query1 = "INSERT INTO books (book_id, book_name, book_author, book_lang, book_pages, book_year, book_rating, book_publisher, book_count, book_description,book_category) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
             const dr = req.body;
-            const values = [dr.bKey, dr.bName, dr.author, dr.lang, dr.pages, dr.year, dr.rating, dr.publisher, dr.description, dr.category];
+            const values = [dr.bKey, dr.bName, dr.author, dr.lang, dr.pages, dr.year, dr.rating, dr.publisher, 1, dr.description, dr.category];
             connection.query(query1,values,(err) => {
                 if(err) {
                     console.log(err);
@@ -147,6 +147,19 @@ app.post('/addBook', (req, res) => {
     })
 
 
+})
+app.post("/addCopy", (req, res) => {
+    // console.log(req.body);
+    const di = req.body;
+    const query = "UPDATE books SET book_count = ? WHERE book_id = ?;";
+    const values = [di.bookNum, di.selectBook];
+    connection.query(query, values, (err) => {
+        if(err) {
+            comsole.log(err);
+            return;
+        }
+        res.redirect('library');
+    })
 })
 app.use((req, res) => {
     res.status(404).render('404');

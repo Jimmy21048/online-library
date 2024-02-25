@@ -23,6 +23,20 @@
         </div>
         <div class="library-right">
             <div id="library-books">
+                <div class="book-special">
+                    <p>ADD BOOK COPY</p>
+                    <form action="/addCopy" method="post">
+                        <select name="selectBook" id="" required>
+                            <option value="">SELECT BOOK</option>
+                            <% books.forEach((book) => {%>
+                                <option value="<%= book.book_id %>"><%=book.book_name[0].toUpperCase().concat(book.book_name.slice(1,))%></option>
+                            <%}) %>
+                        </select>
+                        <label for="num">Enter number to add</label>
+                        <input type="number" name="bookNum" id="num" value="1">
+                        <button>ADD</button>
+                    </form>
+                </div>
                 <% if(books.length === 0) {%>
                     <div class="book">
                         <h1>No books in the library... Please import </h1> 
@@ -32,11 +46,12 @@
                     <a href="/library/book/<%=book.book_id%>">
                         <div class="book">
                             <p><%=book.book_name[0].toUpperCase().concat(book.book_name.slice(1,))%></p>
+                            <p><%= book.book_count%> copies</p>
                             <div><i class="fa-solid fa-book-open"></i></div>
-                            <h6>View</h6>
                         </div>  
                     </a>     
                 <% }) %>
+
             </div>
             <div id="library-add">
                 <h3>ADD BOOK</h3>
