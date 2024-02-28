@@ -18,7 +18,30 @@
             </div>
             <hr>
             <div class="user-bottom">
-                <p>Books Borrowed</p>
+                <div class="borrow">
+                    <h2>Borrow Book</h2>
+                    <form action="/borrowBook" method="post">
+                        <input hidden type="text" name="bookBorrower" value="<%= details[0].member_id %>">
+                        <select required name="bookBorrow" id="">
+                            <option value="">Select Book</option>
+                            <% books.forEach((book) => {%>
+                                <option value="<%= book.book_id%>"><%= book.book_name%></option>
+                            <%}) %>
+                        </select>
+                        <button>BORROW</button>
+                    </form>
+                </div>
+                <div class="borrowed">
+                    <h2>Books Borrowed</h2>
+                    <div class="borrowed-books">
+                        <% booksBorrowed.forEach((book) => {%>
+                            <div>
+                                <p><%= book.book_name %></p>
+                                <p><%= book.date_borrowed %></p>
+                            </div>
+                        <%}) %>
+                        </div>
+                </div>
             </div>
         </div>
     </div>

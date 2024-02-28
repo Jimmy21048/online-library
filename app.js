@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    // port: process.env.PORT
+    port: process.env.PORT
 });
 connection.connect((err) => {
     if(err) {
@@ -29,6 +29,8 @@ app.use(express.urlencoded({extended: true}));
 app.get('/', (req, res) => {
     res.render('home');
 })
+
+let myBooks = [];
 app.get('/library',(req, res) => {
     const query = "SELECT book_id, book_name, book_count FROM books;";
     connection.query(query, (err, results) => {
@@ -42,6 +44,7 @@ app.get('/library',(req, res) => {
                 console.log(err);
                 return;
             }
+            myBooks = results;
             res.render('library', {books: results, members: results1});
         })
     });
@@ -53,6 +56,7 @@ app.get('/library',(req, res) => {
 //specific book page
 app.get('/library/book/:id', (req, res) => {
     const id = req.params.id;
+    // console.log(myBooks);
 
     const query = "SELECT book_name, book_author, book_lang, book_pages, book_year, book_rating, book_rating, book_subject, book_publisher, book_description, book_category FROM books WHERE book_id = ?;";
     const values = [id];
@@ -78,9 +82,31 @@ app.get('/library/user/:id', (req, res) => {
             console.log(err);
             return;
         }
-        // console.log(result);
-        res.render('user', {details: result});
+        const query1 = "SELECT book_name, DATE_FORMAT(borrow_date, '%Y-%m-%d') as date_borrowed FROM borrows INNER JOIN books ON borrows.book_id = books.book_id WHERE member_id = ?;";
+        const values1 = [id];
+        connection.query(query1, values1, (err, result1) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            res.render('user', {details: result, books: myBooks, booksBorrowed: result1});
+        })
+
     })
+})
+app.post('/borrowBook', (req, res) => {
+    const di = req.body;
+
+    const query = "INSERT INTO borrows (member_id, book_id, borrow_date) VALUES (?,?,CURDATE());";
+    const values = [di.bookBorrower, di.bookBorrow];
+    connection.query(query, values, (err) => {
+        if(err) {
+            console.log(err);
+            return;
+        }
+    })
+    res.redirect('library');
+
 })
 
 //regist users
@@ -141,7 +167,7 @@ app.post('/addBook', (req, res) => {
                     console.log(err);
                     return;
                 }
-                res.redirect('library');
+                res.render('library');
             })
         }
     })
