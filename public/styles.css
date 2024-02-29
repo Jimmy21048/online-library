@@ -456,33 +456,63 @@ header .home-left img {
 /*  */
 .user-bottom {
     color:white;
+    width:100%;
+    overflow-x:scroll;
     display:flex;
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    height:250px;
 }
 .user-bottom p {
     text-align:center;
     border:1px solid;
 }
 .borrow {
-    height:max-content;
-    border:1px solid;
+    height:80%;
+    width:40%;
+    padding:20px;
     margin:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
 }
 .borrow form {
     display:flex;
-    gap:20px;
+    gap:30px;
     flex-direction: column;
     justify-content: space-around;
 }
+.borrow form select {
+    height:5vh;
+}
+.borrow form button {
+    height:5vh;
+    width:max-content;
+    padding:5px 10px;
+    margin:0 auto;
+    border-radius:10px;
+}
 .borrowed {
     padding:20px;
+    width:max-content;
+    overflow-y:hidden;
+}
+.borrowed-books {
+    /* width:100%; */
+    width:max-content;
 }
 .borrowed-books div {
     display:flex;
+    width:100%;
+    justify-content: space-between;
 }
 .borrowed-books div p {
-    width:max-content;
+    width:250px;
+    min-width:max-content;
     padding:5px 10px;
+}
+.borrowed-books div p:last-of-type {
+    width:140px;
 }
 /*  */
 .book-main {
@@ -827,6 +857,23 @@ header .home-left img {
     .book-content-left div {
         height:50px;
         min-width:250px;
+    }
+
+    .user-bottom {
+        flex-direction:column;
+        height:max-content;
+        overflow:scroll;
+    }
+    .borrow {
+        height:200px;
+        width:100%;
+        padding:5px;
+        margin:0;
+    }
+    .borrowed {
+        padding:5px;
+        height:250px;
+        width:500px;
     }
 }
 @media screen and (max-width:400px) {

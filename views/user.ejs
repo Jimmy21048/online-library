@@ -28,7 +28,12 @@
                                 <option value="<%= book.book_id%>"><%= book.book_name%></option>
                             <%}) %>
                         </select>
-                        <button>BORROW</button>
+                        <% if(booksBorrowed.length <3) { %>
+                            <button>BORROW</button>
+                        <%} else {%>
+                            <p>Maximum borrowing limit reached</p>
+                        <%}%>
+                        
                     </form>
                 </div>
                 <div class="borrowed">
