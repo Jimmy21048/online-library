@@ -65,15 +65,15 @@
             <div id="library-regist">
                 <h3>MEMBERSHIP</h3>
                 <form action="/addMember" method="post">
-                    <label for="userFname">Enter First Name</label>
-                    <input type="text" name="userFname">
-                    <label for="userLname">Enter Last Name</label>
-                    <input type="text" name="userLname">
+                    <label for="userName">Enter Name</label>
+                    <input type="text" id="userName" name="userName">
                     <label for="userEmail">Enter Valid Email</label>
                     <input type="text" name="userEmail">
-                    <label for="userId">Enter National ID</label>
-                    <input type="text" name="userId">
-                    <button>UPDATE</button>
+                    <label for="pwd">Enter password</label>
+                    <input type="text" name="pwd">
+                    <label for="pwdConfirm">Confirm password</label>
+                    <input type="text" name="pwdConfirm">
+                    <button>SIGN UP</button>
                 </form>
             </div>
             <div id="library-users">
@@ -86,7 +86,7 @@
                     <%
                      members.forEach((member) => { %>
                         <a href="/library/user/<%=member.member_id%>">
-                                <p><%=member.member_fname[0].toUpperCase().concat(member.member_fname.slice(1,)) %> <%=member.member_lname[0].toUpperCase().concat(member.member_lname.slice(1,))%> <i class="fa-solid fa-arrow-right-long"></i></p>
+                                <p><%=member.member_username[0].toUpperCase().concat(member.member_username.slice(1,)) %><i class="fa-solid fa-arrow-right-long"></i></p>
                         </a>     
                     <% }) %>
                 </div>

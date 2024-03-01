@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body class="login-body" onload="loaded()">
+    <div class="login-left">
+        <% if(message) {%>
+            <p style="color:green;font-size: 0.9rem;"><%= message %></p>
+        <%} %>
+        <h3>LOGIN</h3>
+        <form action="/logMember" method="post">
+            <label for="userEmail">Email/ Username</label>
+            <input type="text" name="userEmail">
+            <label for="pwd">Password</label>
+            <input type="password" name="pwd">
+            <button>LOGIN</button>
+        </form>
+    </div>
+    <div class="login-right">
+        <span>Don't have an account? <a href="/signup">Sign up</a></span>
+    </div>
+</body>
+<script>
+    function loaded() {
+        alert("To access manager rights, Username:admin, password: admin");
+    }
+</script>
+</html>

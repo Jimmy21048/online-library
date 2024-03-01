@@ -10,32 +10,13 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="user-right">
-                    <div> <p><%= details[0].member_fname.toUpperCase() %> <%= details[0].member_lname.toUpperCase()%></p></div>
+                    <div> <p><%= details[0].member_username.toUpperCase() %></p></div>
                     <div><p><%= details[0].member_email %></p></div>
-                    <div><p><%= details[0].member_national_id %></p></div>
                     <div></p><p><%= details[0].member_id %></p></div>
                 </div>
             </div>
             <hr>
             <div class="user-bottom">
-                <div class="borrow">
-                    <h2>Borrow Book</h2>
-                    <form action="/borrowBook" method="post">
-                        <input hidden type="text" name="bookBorrower" value="<%= details[0].member_id %>">
-                        <select required name="bookBorrow" id="">
-                            <option value="">Select Book</option>
-                            <% books.forEach((book) => {%>
-                                <option value="<%= book.book_id%>"><%= book.book_name%></option>
-                            <%}) %>
-                        </select>
-                        <% if(booksBorrowed.length <3) { %>
-                            <button>BORROW</button>
-                        <%} else {%>
-                            <p>Maximum borrowing limit reached</p>
-                        <%}%>
-                        
-                    </form>
-                </div>
                 <div class="borrowed">
                     <h2>Books Borrowed</h2>
                     <div class="borrowed-books">

@@ -2,6 +2,7 @@
 const express = require('express');
 const mysql = require('mysql');
 require('dotenv').config();
+const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -11,7 +12,7 @@ const connection = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.PORT
+    // port: process.env.PORT
 });
 connection.connect((err) => {
     if(err) {
@@ -30,6 +31,13 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
+app.get('/signup', (req, res) => {
+    res.render('signup', {message: ''});
+})
+app.get('/login', (req, res) => {
+    res.render('login', {message: ''});
+})
+
 let myBooks = [];
 app.get('/library',(req, res) => {
     const query = "SELECT book_id, book_name, book_count FROM books;";
@@ -38,13 +46,14 @@ app.get('/library',(req, res) => {
             console.log(err);
             return;
         }
-        const query1 = "SELECT member_fname, member_lname, member_id FROM members;";
+        const query1 = "SELECT member_username, member_id FROM members;";
         connection.query(query1, (err, results1) => {
             if(err) {
                 console.log(err);
                 return;
             }
             myBooks = results;
+            // console.log(results1);
             res.render('library', {books: results, members: results1});
         })
     });
@@ -74,7 +83,7 @@ app.get('/library/book/:id', (req, res) => {
 app.get('/library/user/:id', (req, res) => {
     const id = req.params.id;
 
-    const query = "SELECT * FROM members WHERE member_id = ?;";
+    const query = "SELECT member_id, member_username, member_email FROM members WHERE member_id = ?;";
     const values = [id];
 
     connection.query(query, values, (err, result) => {
@@ -105,52 +114,106 @@ app.post('/borrowBook', (req, res) => {
             return;
         }
     })
-    res.redirect('library');
+    res.redirect('/login');
 
 })
 
 //regist users
 app.post('/addMember', (req, res) => {
     const data = req.body;
-
-    const query0 = "SELECT member_fname, member_lname, member_national_id FROM members WHERE member_national_id = ?;";
-    const values0 = [data.userId];
-    connection.query(query0, values0, (err, result) => {
+    const query = "SELECT member_username FROM members WHERE member_email = ?;";
+    const values = [data.userEmail];
+    connection.query(query, values, async (err, results) => {
         if(err) {
             console.log(err);
             return;
         }
-        if(result.length === 0) {
-            const query = "INSERT INTO members (member_fname, member_lname, member_email, member_national_id) VALUES (?, ?, ?, ?);";
-            const values = [data.userFname, data.userLname, data.userEmail, data.userId];
-            connection.query(query, values, (err) => {
-                if(err) {
-                    console.log(err);
-                    return;
-                }
-                
-            })
-        
-            const query1 = "SELECT member_fname, member_lname, member_id FROM members WHERE member_fname = ? AND member_email = ?;";
-            const values1 = [data.userFname, data.userEmail];
-            connection.query(query1, values1, (err, result) => {
-                if(err) {
-                    console.log(err);
-                    return;
-                }
-                res.render('regist', {details: result, userExists: 0});
-            })
-            // connection.end();
+
+        if(results.length > 0) {
+            return res.render('signup', {message: 'This email is already registered!'});
+        }
+        else if(data.pwd !== data.pwdConfirm) {
+            return res.render('signup', {message: 'Passwords do not match!'});
+        }
+        else if(data.pwd.length < 5) {
+            return res.render('signup', {message: 'Password must be more than 5 characters!'});
         } else {
-            res.render('regist', {details: result, userExists: 1});
+
+            let hashedPassword = await bcrypt.hash(data.pwd, 8);
+            const query1 = "INSERT INTO members (member_username, member_email, member_password) VALUES (?, ?, ?);";
+            const values1 = [data.userName, data.userEmail, hashedPassword];
+            connection.query(query1, values1, (err) => {
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                return res.render('login', {message: 'Sign up succesful, Login'});
+            })
+        }
+        
+
+        
+    })
+})
+
+app.post('/logMember', (req, res) => {
+    const data = req.body;
+    
+    const query = "SELECT * FROM members WHERE member_email = ? OR member_username = ?;";
+    const values = [data.userEmail, data.userEmail];
+    connection.query(query, values, async (err, results) => {
+        if(err) {
+            console.log(err);
+            return;
+        }
+
+        if(results.length < 1) {
+            const queryAdmin = "SELECT username FROM admin WHERE username = ? AND pwd = ?;";
+            const valuesAdmin = [data.userEmail, data.pwd];
+            connection.query(queryAdmin, valuesAdmin, (err, resultAdmin) => {
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+      
+                if(resultAdmin.length > 0) {
+                    res.redirect('library');
+                } else {
+                    return res.render('login', {message : "Invalid username or password!"});
+                }
+            })
+            
+        } else {
+            let result =await bcrypt.compare(data.pwd, results[0].member_password);
+            if(result) {
+
+                const query = "SELECT book_id, book_name, book_count FROM books;";
+                connection.query(query, (err, allBooks) => {
+                    if(err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    const query1 = "SELECT book_name, DATE_FORMAT(borrow_date, '%Y-%m-%d') as date_borrowed FROM borrows INNER JOIN books ON borrows.book_id = books.book_id WHERE member_id = ?;";
+                    const values1 = [results[0].member_id];
+                    connection.query(query1, values1, (err, borrowedBooks) => {
+                        if(err) {
+                            console.log(err);
+                            return;
+                        }
+                        return res.render('userClient', {details: results[0], borrowedBooks, books: allBooks});
+                    })
+                });
+               
+            } else {
+                return res.render('login', {message : "Invalid username or password!"});
+            }
         }
     })
-
 
 })
 
 app.post('/addBook', (req, res) => {
-    // console.log(req.body);
     const id0 = req.body;
     const query = "SELECT * FROM books WHERE book_id = ?;";
     const values0 = [id0.bKey];
@@ -167,7 +230,7 @@ app.post('/addBook', (req, res) => {
                     console.log(err);
                     return;
                 }
-                res.render('library');
+                res.redirect('library');
             })
         }
     })
@@ -181,7 +244,7 @@ app.post("/addCopy", (req, res) => {
     const values = [di.bookNum, di.selectBook];
     connection.query(query, values, (err) => {
         if(err) {
-            comsole.log(err);
+            console.log(err);
             return;
         }
         res.redirect('library');

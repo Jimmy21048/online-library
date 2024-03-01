@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body class="signup-body">
+    <div class="signup-left">
+            <h3>SIGN UP</h3>
+            <form action="/addMember" method="post" id="my-form">
+                <label for="userName">Enter Name</label>
+                <input type="text" id="userName" name="userName">
+                <label for="userEmail">Enter Valid Email</label>
+                <input type="text" name="userEmail">
+                <label for="pwd">Enter password</label>
+                <input type="password" name="pwd">
+                <label for="pwdConfirm">Confirm password</label>
+                <input type="password" name="pwdConfirm">
+                <button>SIGN UP</button>
+
+                <% if(message) {%>
+                    <p style="color:red;font-size: 0.8rem;"><%= message %></p>
+                <%} %>
+            </form>
+
+    </div>
+    <div class="signup-right">
+        <span>Already have an account? <a href="/login">Login</a></span>
+    </div>
+
+    <!-- <script>
+        let myForm = document.querySelector('#my-form');
+
+        myForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+        })
+    </script> -->
+</body>
+</html>

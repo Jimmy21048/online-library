@@ -2,10 +2,11 @@
 <html lang="en">
     <%- include('./partials/head.ejs') %>
 <body>
-    <div class="main-body-top"></div>
-    <%- include('./partials/header.ejs')%>
-    <hr>
     <div class="main-body">
+        <div class="main-body-top">
+            <%- include('./partials/header.ejs')%>
+            <hr>
+        </div>
         <div class="main-body-bottom">
             <p>
                 Effortlessly handle book lending, member sign-ups,
@@ -14,7 +15,11 @@
                 and foster community engagement. With BookMaster, elevate your library
                 management to new heights.
             </p>
-            <a href="/library">GO TO LIBRARY <i class="fa-solid fa-arrow-right-long"></i></a>
+            <div>
+                <a href="/signup">SIGN UP</a>
+                <a href="/login">LOGIN <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+            <!-- <a href="/library">GO TO LIBRARY <i class="fa-solid fa-arrow-right-long"></i></a> -->
         </div>
     </div>
     <script src="home.js"></script>

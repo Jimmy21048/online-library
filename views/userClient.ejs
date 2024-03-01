@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <div class="member-body">
+        <div class="member-left">
+            <p class="member-name">
+                <%= details.member_username %>
+            </p>
+            <div class="member-info">
+                <p>Email : <%= details.member_email %></p> 
+                <p>Library ID : <%= details.member_id %></p> 
+            </div>
+            <div class="member-community">
+                <h2>Community</h2>
+            </div>
+        </div>
+        <div class="member-right">
+            <h3>Books</h3>
+            <div class="member-books-available">
+                <% if(books.length === 0) {%>
+                    <div class="book-available">
+                        <h1>No books borrowed currently </h1> 
+                    </div>
+                <% }%>
+                <% books.forEach((book) => { %>
+                        <div class="book-available">
+                            <p><%=book.book_name[0].toUpperCase().concat(book.book_name.slice(1,))%></p>
+                            <div><i class="fa-solid fa-book-open"></i></div>
+                            <a href="/library/book/<%=book.book_id%>">View Book</a>
+                            <form action="/borrowBook" method="post">
+                                <input hidden type="text" name="bookBorrower" value="<%= details.member_id %>">
+                                <input hidden type="text" name="bookBorrow" value="<%= book.book_id %>">
+                                <% if(borrowedBooks.length <3) { %>
+                                    <button>BORROW</button>
+                                <%} else {%>
+                                    <p></p>
+                                <%}%>
+                                
+                            </form>
+                        </div>   
+                <% }) %>
+            </div>
+            <h5>Books Borrowed</h5>
+            <div class="member-books-borrowed">
+                <% borrowedBooks.forEach((book) => {%>
+                    <div class="book-borrowed">
+                        <p>Book :<%=book.book_name[0].toUpperCase().concat(book.book_name.slice(1,))%></p>
+                        <p>Date Borrowed: <%= book.date_borrowed %></p>
+                    </div>
+                <%}) %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
