@@ -3,27 +3,16 @@
     padding:0;
     margin:0;
     font-family: Verdana;
-    -webkit-user-select: none;
-    user-select: none;
+    
+}
+a:focus, button:focus {
+    outline: none;
 }
 body {
     height:100vh;
     width:100vw;
     overflow:hidden;
 }
-/* home styles */
-/* .main-body-top {
-    height:100vh;
-    width:100vw;
-    position:absolute;
-    background-image: url(./pexels-huỳnh-đạt-2177482.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index:-1;
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-} */
 
 header {
     padding:10px;
@@ -62,7 +51,6 @@ header a:hover {
     display:flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* opacity:.9; */
 }
 .main-body-top {
     height:60vh;
@@ -72,16 +60,15 @@ header a:hover {
     background-size: cover;
 }
 
-.main-body-bottom {
+  .main-body-bottom {
     height:40vh;
     display:flex;
     gap:30px;
     flex-direction:column;
     align-items:center;
     justify-content: flex-end;
-    /* margin-bottom:10vh; */
     padding-bottom:5vh;
-    background-color: black;
+    /* background-color: black; */
 }
 .main-body-bottom p {
     width:100vw;
@@ -89,28 +76,28 @@ header a:hover {
     z-index: 2;
     text-align: center;
     font-size:22px;
-    color:white;
-    font-weight: 200;
+    color:black;
+    font-weight: 100;
 }
 .main-body-bottom div {
-    height:5vh;
+    height:6vh;
+    width:300px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 .main-body-bottom a {
+    height:5vh;
     z-index: 2;
-    width:200px;
-    margin-top:20px;
-    margin-right:20px;
-    padding:10px 20px;
+    width:130px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     border-radius:20px;
     text-decoration:none;
-    color:rgb(0, 0, 0);
+    color:white;
     font-weight:800;
     background-color: rgb(255, 0, 0);
-}
-.main-body-bottom a .fa-solid {
-    color:black;
-    font-size:20px;
-    margin-left:10px;
 }
 .signup-body, .login-body {
     display:flex;
@@ -139,19 +126,21 @@ header a:hover {
 
 }
 .signup-left form input, .login-left form input {
-    height:5vh;
+    height:6vh;
     width:250px;
-    color:#A52A2A;
+    font-weight:lighter;
     border:none;
-    border-left:3px solid #04AA6D;
-    font-size:1.2rem;
+    padding-left:10px;
 }
 .signup-left form input:focus, .login-left form input:focus {
     outline: none;
+    background-color: rgb(204, 255, 251);
+    border-radius:10px;
+    
 }
 .signup-left form label, .login-left form label {
     width:250px;
-    font-size:1.2rem;
+    font-weight:100;
     display:flex;
     justify-content:space-between;
 }
@@ -172,7 +161,6 @@ header a:hover {
     background-repeat: no-repeat;
     background-color: black;
     color:black;
-    /* opacity:.7; */
     display:flex;
     align-items: flex-end;
     justify-content: center;
@@ -187,11 +175,10 @@ header a:hover {
     background-color: white;
     padding:5px;
     border-radius: 5px;
-    font-size:1.1rem
 }
 .signup-right span a, .login-right span a {
     text-decoration: none;
-    color:red;
+    color:#04aa6d;
 }
 
 /* library styles */
@@ -399,8 +386,9 @@ header a:hover {
     display:flex;
     flex-direction: column;
     align-items:Center;
-    background-color: black;
-    color:white;
+    background-color: #04AA6D;
+    /* box-shadow:1px 1px 3px black; */
+    color:black;
 }
 .book-special p {
     margin-top:5px;
@@ -605,8 +593,8 @@ header a:hover {
 }
 /*  */
 .book-main {
-    background-color: rgb(27, 20, 15);
-    color: rgb(206, 168, 0);
+    background-color: rgb(248, 255, 252);
+    color: black;
 } 
 .book-hero {
     height:inherit;
@@ -617,17 +605,18 @@ header a:hover {
     align-items: center;
 }
 .book-main header a {
-    color: rgb(206, 168, 0);
+    color: black;
+    font-weight:100;
 }
 .book-main header a:hover {
-    color: rgb(27, 20, 15);
-    background-color: rgb(206, 168, 0);
+    color: white;
+    background-color: #26eb71;
 }
 .book-card {
     width:inherit;
     height:inherit;
     border:1px solid;
-    box-shadow: -3px -2px 23px 20px black inset;
+    /* box-shadow: -3px -2px 23px 20px black inset; */
 }
 .book-icon {
     height:30%;
@@ -651,12 +640,14 @@ header a:hover {
     align-items: center;
     min-width:150px;
     max-width:max-content;
-    border: 1px solid;
     border-radius: 10px;
+    background-color: #26eb71;
+    box-shadow: 1px 1px 1px black;
+    color:white;
 }
 .book-icon .fa-solid {
     font-size: 150px;
-    color:white;
+    color:black;
 }
 .book-content {
     display:flex;
@@ -684,10 +675,12 @@ header a:hover {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border:1px solid;
     height:max-content;
     padding:20px;
     border-radius:20px;
+    background-color: #26eb71;
+    box-shadow: 1px 1px 1px black;
+    color:white;
 }
 .book-content-left div {
     height:70px;
@@ -697,8 +690,10 @@ header a:hover {
     align-items: center;
     min-width:250px;
     max-width:max-content;
-    border: 1px solid;
     border-radius: 10px;
+    background-color: #26eb71;
+    box-shadow: 1px 1px 1px black;
+    color:white;
 }
 /* member */
 .member-header {
@@ -709,7 +704,7 @@ header a:hover {
     height:90vh;
     width:100vw;
     display:flex;
-    background-color: #F3F3F3;
+    background-color: #fffefe;
 }
 .member-left {
     width:30vw;
@@ -722,13 +717,23 @@ header a:hover {
 .member-name {
     width:25vw;
     height:7vh;
-    padding-top:2vh;
     font-size:1.2rem;
-    font-weight:700;
-    text-align:center;
+    font-weight:100;
     border-radius:10px;
-    background-color: #01D6DA;
+    background-color: #26eb71;
     color: white;
+    display:flex;
+    justify-content:space-between;
+    padding:0 5px;
+    align-items:center;
+    box-shadow:1px 1px 1px black;
+}
+.member-name a {
+    background-color: red;
+    color:black;
+    text-decoration: none;
+    border-radius: 5px;
+    padding:5px 10px;
 }
 .member-info {
     height:20vh;
@@ -738,13 +743,32 @@ header a:hover {
     flex-direction: column;
     justify-content: space-around;
     background-color: white;
-    font-weight:700;
+    font-weight:100;
+    padding-left:10px;
+    box-shadow: 1px 1px 2px gray;
 }
 .member-community {
     height:30vh;
     width:25vw;
     border-radius:10px;
     background-color: white;
+    font-weight:100;
+    padding-left:10px;
+    box-shadow: 1px 1px 2px gray;background-color: white;
+}
+.member-community a {
+    height:5vh;
+    background-color: #26eb71;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow: 1px 1px 1px black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:150px;
+    text-decoration: none;
+    margin-top:20px;
 }
 .member-right {
     width:70vw;
@@ -767,15 +791,16 @@ header a:hover {
 }
 .member-books-available .book-available {
     height:35vh;
-    min-width:15vw;
+    min-width:350px;
     display:flex;
     flex-direction:column;
     justify-content: space-around;
     align-items: center;
     border-radius:10px;
-    background-color: #01D6DA;
-    font-weight:700;
+    background-color: #26eb71;
+    font-weight:100;
     color: white;
+    box-shadow:1px 1px 1px black;
 }
 .book-available p , .book-borrowed p{
     text-align:center;
@@ -800,15 +825,120 @@ header a:hover {
 }
 .book-borrowed {
     width:30vw;
+    min-width:350px;
     height:25vh;
     padding:10px;
     border-radius:10px;
-    background-color: #01D6DA;
+    background-color: #26eb71;
     color: white;
-    font-weight:700;
+    box-shadow:1px 1px 1px black;
+    font-weight:100;
 }
 
 /* member */
+/* community */
+.community-main {
+    height:100vh;
+    width:100vw;
+    overflow:hidden;
+}
+.community-header {
+    height:10vh;
+    display:flex;
+    justify-content:center;
+    align-items:Center;
+    background-color: #04AA6D;
+}
+.community-body {
+    height:90vh;
+    width:100vw;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    padding-bottom:10vh;
+    background-color:#aeffdd;
+}
+.chat {
+    height:max-content;
+    width:100%;
+    padding:5px 10px;
+    display:flex;
+    justify-content: start;
+}
+.chat-right {
+    justify-content: end;
+}
+.chat-box {
+    min-height:max-content;
+    max-width:500px;
+    border-top-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding:10px;
+    background-color: #26eb71;
+}
+.chat-name {
+    color:white;
+    font-weight:100;
+    width:100%;
+    padding:2px 10px;
+    border-radius:5px;
+}
+.chat-right .chat-box {
+    border-top-right-radius: 0;
+    border-top-left-radius: 10px;
+}
+.chat-right .chat-name {
+    text-align:right;
+}
+.chat-box .chat-message {
+    height:max-content;
+    overflow-wrap: break-word;
+}
+.community-text {
+    height:10vh;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:0 20px;
+    background-color: #04AA6D;
+    display:flex;
+    align-items:center;
+}
+.community-text form {
+    display:flex;
+    gap:20px;
+}
+.community-text form button {
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+}
+.community-text form button .fa-regular {
+    color:black;
+    font-size:30px;
+}
+.community-text textarea {
+    width:400px;
+}
+.community-text input {
+    width:450px;
+    max-width:70vw;
+    background-color:#aeffdd;
+    padding:0 2px;
+    border-radius:10px;
+    height:6vh;
+    border:none;
+    font-size: 1.1rem;
+    padding-left:10px;
+}
+.community-text input:focus {
+    outline:none;
+}
+
 
 
 
@@ -905,10 +1035,6 @@ header a:hover {
         background-color: orangered;
         width:min-content;
     }
-    .main-body-bottom p {
-        font-size:1.1rem;
-        padding:0 20px;
-    }
     .main-body-top {
         height:50vh;
     }
@@ -917,17 +1043,10 @@ header a:hover {
         padding-bottom:10vh;
         gap:50px;
     }
-    .main-body-bottom div {
-        width:100vw;
-        display:flex;
-        justify-content: space-around;
-        height:5vh;
+    .main-body-bottom p {
+        font-size:1.1rem;
+        padding:0 20px;
     }
-    .main-body-bottom div a {
-        height:5vh;
-        width:150px;
-    }
-
 
     /* signup */
     .signup-body, .login-body {
@@ -1125,6 +1244,7 @@ header a:hover {
         overflow-y:scroll;
         display:flex;
         flex-direction: column;
+        
     }
     .member-left {
         width:100vw;
@@ -1136,8 +1256,7 @@ header a:hover {
     .member-name {
         width:90vw;
         height:7vh;
-        padding-top:20px;
-        font-size:initial;
+        /* font-size:initial; */
     }
     .member-info {
         height:30vh;
@@ -1157,16 +1276,32 @@ header a:hover {
         width:100vw;
     }
     .member-books-available .book-available {
-        min-width:50vw;
+        min-width:300px;
     }
     .member-books-borrowed {
         width:100vw;
-        padding:20px;
+        padding:10px;
         overflow-x:scroll;
     }
     .book-borrowed {
-        min-width:80vw;
+        min-width:300px;
     }
+    /* community */
+    .community-main {
+        width:100vw;
+    }
+    .chat-box {
+        max-width:80vw;
+    }
+    .community-text textarea {
+        width:200px;
+    }
+    .community-text input {
+        /* width:min-content; */
+        font-size:initial;
+        height:5vh;
+    }
+
 }
 @media screen and (max-width:400px) {
     .main-body-bottom p {

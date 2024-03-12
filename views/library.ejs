@@ -18,6 +18,7 @@
                 <a href="#library-books"><i class="fa-solid fa-book"></i> <p>Books</p></a>
                 <a href="#library-add"><i class="fa-solid fa-download"></i> <p>Import</p></a>
                 <a href="#library-users"><i class="fa-solid fa-users"></i> <p>Users</p></a>
+                <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> <p>Log out</p></a>
             </div>
 
         </div>
@@ -86,7 +87,7 @@
                     <%
                      members.forEach((member) => { %>
                         <a href="/library/user/<%=member.member_id%>">
-                                <p><%=member.member_username[0].toUpperCase().concat(member.member_username.slice(1,)) %><i class="fa-solid fa-arrow-right-long"></i></p>
+                                <p><%=member.member_username[0].toUpperCase().concat(member.member_username.slice(1,)) %></p>
                         </a>     
                     <% }) %>
                 </div>

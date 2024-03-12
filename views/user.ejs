@@ -10,9 +10,12 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="user-right">
-                    <div> <p><%= details[0].member_username.toUpperCase() %></p></div>
-                    <div><p><%= details[0].member_email %></p></div>
-                    <div></p><p><%= details[0].member_id %></p></div>
+                    <% details.forEach((detail) => {%>
+                        <div> <p><%= detail.member_username.toUpperCase() %></p></div>
+                        <div><p><%= detail.member_email %></p></div>
+                        <div></p><p><%= detail.member_id %></p></div>
+                    <%})  %>
+
                 </div>
             </div>
             <hr>

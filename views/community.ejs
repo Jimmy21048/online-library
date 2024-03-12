@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body class="community-main">
+    <div class="community-header">
+        <%= uname%>
+    </div>
+    <div class="community-body">
+        <% chats.forEach((chat) => {%>  
+            <% if(chat.member_id == id) {%>
+                <div class="chat">
+                    <div class="chat-box">
+                        <div class="chat-message"><%= chat.chat%></div>
+                    </div>
+                </div>  
+            <%} else {%>
+                <div class="chat chat-right">
+                    <div class="chat-box">
+                        <div class="chat-name"><%= chat.member_username%></div>
+                        <div class="chat-message"><%= chat.chat%></div>
+                    </div>
+                </div> 
+            <%}%>    
+        <%}) %>
+    </div>
+    <div class="community-text">
+        <form action="/addChat/<%= id%>" method="post" id="form" action="">
+            <input hidden type="number" id="userId" value="<%=id%>">
+            <input autocomplete="off" id="input" name="text">
+            <button><i class="fa-regular fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <script>
+ 
+        function scrollTop() {
+            let chatContainer = document.querySelector('.community-body');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            scrollTop();
+        })
+        const socket = io();
+
+        let form = document.getElementById('form');
+        let id = document.getElementById('userId');
+        let text = document.getElementById('input');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if(text.value && id.value) {
+                
+                const data = {id: id.value, chat: text.value};
+                socket.emit('dataUpdate', data);
+                text.value='';
+            }
+        })
+        
+        socket.on('dataUpdate', (results) => {
+            let listContent = document.querySelector('.community-body');
+            
+            listContent.innerHTML = '';
+            results.forEach((result) => {
+                let chat = (result.member_id == id.value) ?
+                 `
+                    <div class="chat">
+                        <div class="chat-box">
+                            <div class="chat-name">Me</div>
+                            <div class="chat-message">${result.chat}</div>
+                        </div>
+                    </div>  
+                 ` :
+                 `
+                    <div class="chat chat-right">
+                        <div class="chat-box">
+                            <div class="chat-name">${result.member_username}</div>
+                            <div class="chat-message">${result.chat}</div>
+                        </div>
+                    </div> 
+                 `;
+
+                listContent.innerHTML+=chat;
+            })
+            scrollTop();
+        })
+    </script>
+</body>
+</html>

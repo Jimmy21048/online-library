@@ -8,22 +8,28 @@
             <div class="book-icon">
                 <i class="fa-solid fa-book-open" ></i>
                 <div class="right">
-                    <div><p>Name</p> <p><%= result[0].book_name%></p></div>
-                    <div><p>Author</p> <p><%= result[0].book_author%></p></div>
+                    <% results.forEach((result) => {%>
+                        <div><p>Name</p> <p><%= result.book_name%></p></div>
+                        <div><p>Author</p> <p><%= result.book_author%></p></div>
+                    <%}) %>
                 </div>
             </div>
             <div class="book-content">
                 <div class="book-content-left">
-                    <div><p>Language</p> <p><%= result[0].book_lang%></p></div>
-                    <div><p>Pages</p> <p><%= result[0].book_pages%></p></div>
-                    <div><p>Year</p> <p><%= result[0].book_year%></p></div>
-                    <div><p>Rating</p> <p><%= result[0].book_rating%></p></div>
-                    <div><p>Subject</p> <p><%= result[0].book_subject%></p></div>
-                    <div><p>Publisher</p> <p><%= result[0].book_publisher%></p></div>
+                    <% results.forEach((result) => {%>
+                        <div><p>Language</p> <p><%= result.book_lang%></p></div>
+                        <div><p>Pages</p> <p><%= result.book_pages%></p></div>
+                        <div><p>Year</p> <p><%= result.book_year%></p></div>
+                        <div><p>Rating</p> <p><%= result.book_rating%></p></div>
+                        <div><p>Subject</p> <p><%= result.book_subject%></p></div>
+                        <div><p>Publisher</p> <p><%= result.book_publisher%></p></div>
+                    <%}) %>
                 </div>
                 <div class="book-content-right">
-                    <div><p>Description</p> <p><%= result[0].book_description%></p></div>
-                    <div><p>Category</p> <p><%= result[0].book_category%></p></div>
+                    <% results.forEach((result) => {%>
+                        <div><p>Description</p> <p><%= result.book_description%></p></div>
+                        <div><p>Category</p> <p><%= result.book_category%></p></div>
+                    <%}) %>
                 </div>
             </div>
         </div>
