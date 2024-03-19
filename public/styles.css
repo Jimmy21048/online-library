@@ -128,7 +128,7 @@ header a:hover {
 .signup-left form input, .login-left form input {
     height:6vh;
     width:250px;
-    font-weight:lighter;
+    font-weight:300;
     border:none;
     padding-left:10px;
 }
@@ -140,7 +140,7 @@ header a:hover {
 }
 .signup-left form label, .login-left form label {
     width:250px;
-    font-weight:100;
+    font-weight:500;
     display:flex;
     justify-content:space-between;
 }
@@ -729,7 +729,7 @@ header a:hover {
     box-shadow:1px 1px 1px black;
 }
 .member-name a {
-    background-color: red;
+    /* background-color: red; */
     color:black;
     text-decoration: none;
     border-radius: 5px;
@@ -746,6 +746,9 @@ header a:hover {
     font-weight:100;
     padding-left:10px;
     box-shadow: 1px 1px 2px gray;
+}
+.member-info a {
+    text-decoration:none;
 }
 .member-community {
     height:30vh;
@@ -822,6 +825,7 @@ header a:hover {
     display:flex;
     align-items:center;
     gap:10px;
+    overflow-x:scroll;
 }
 .book-borrowed {
     width:30vw;
@@ -845,9 +849,18 @@ header a:hover {
 .community-header {
     height:10vh;
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
+    padding:0 10px;
     align-items:Center;
     background-color: #04AA6D;
+}
+.community-header a {
+    text-decoration:none;
+    color:#fff;
+    /* border:1px solid; */
+    padding:5px 10px;
+    border-radius:10px;
+    background-color: #000;
 }
 .community-body {
     height:90vh;
@@ -938,7 +951,96 @@ header a:hover {
 .community-text input:focus {
     outline:none;
 }
-
+/* settings page */
+.settings-body {
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:Center;
+}
+.settings-top {
+    height:40vh;
+    width:800px;
+    max-width:80vw;
+    border-radius: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-items:Center;
+    box-shadow: 1px 1px 2px gray;
+    background-color:#fbfdff;
+}
+.settings-top div {
+    width:20%;
+    height:17vh;
+}
+.settings-top a{
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:Center;
+    justify-content: space-around;
+    gap:20px;
+    color: black;
+    width:100%;
+    height:17vh;
+    background-color:#E7E9EB;
+    font-size:0.8rem;
+    text-align: center;
+    border-radius:15px;
+    padding-top: 10px;
+    cursor:pointer;
+}
+.settings-top .fa-solid {
+    font-size:35px;
+}
+.settings-bottom {
+    height:50vh;
+    width:800px;
+    max-width:80vw;
+    border-radius: 20px;
+    box-shadow: 1px 1px 2px gray;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:20px;
+    background-color:#fbfdff;
+}
+.settings-bottom h3 {
+    margin:20px;
+    padding:5px 10px;
+    text-align: center;
+}
+.settings-bottom form, .settings-bottom div {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    width:500px;
+    gap:20px;
+}
+.settings-bottom form input , .settings-bottom div h3 {
+    height:5vh;
+    border-radius: 10px;
+    border:none;
+    background-color:#E7E9EB;
+    width:300px;
+    padding-left:5px;
+}
+.settings-bottom form input:focus {
+    outline: none;
+}
+.settings-bottom form button {
+    width:max-content;
+    padding:5px 10px;
+    border-radius:10px;
+    border:none;
+    color:#fff;
+    background-color: #000;
+    height:5vh;
+}
+/* settings page */
 
 
 
@@ -1301,6 +1403,37 @@ header a:hover {
         font-size:initial;
         height:5vh;
     }
+    /* settings page */
+.settings-body {
+    overflow-x:hidden;
+    padding:0;
+    margin:0;
+}
+.settings-top {
+    width:90vw;
+    max-width:400px;
+    display:grid;
+    grid-template-columns: auto auto;
+}
+.settings-top a{
+    width:130px;
+}
+.settings-bottom {
+    height:50vh;
+    width:90vw;
+    max-width:400px;
+}
+.settings-bottom span p{
+    max-width:88vw;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+.settings-bottom form label {
+    max-width:88vw;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+/* settings page */
 
 }
 @media screen and (max-width:400px) {

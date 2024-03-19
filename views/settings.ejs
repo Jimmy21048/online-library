@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <div class="settings-body">
+        <div class="settings-top">
+            <div><a href="/"><i class="fa-solid fa-house"></i> Home</a></div>
+            <div><a onclick="changeUsername()"><i class="fa-solid fa-user-pen"></i> Change Username</a></div>
+            <div><a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a></div>
+            <div><a onclick="deleteAccount()"><i class="fa-solid fa-trash"></i> Delete Account</a></div>
+            
+        </div>
+        <div class="settings-bottom">
+            <div>
+                <span><p style="color:red;"><%= changeUsername %></p><p style="color:green;"><%= changeUsername1 %></p></span>
+                <h3><%= details.member_username%></h3>
+                <h3><%= details.member_id%></h3>
+                <h3><%= details.member_email%></h3>
+
+            </div>
+        </div>
+    </div>
+    <script>
+
+        let settingsBottom = document.querySelector('.settings-bottom');
+
+        function changeUsername() {
+            settingsBottom.innerHTML  = `
+                        <h3>Change Username</h3>
+                <form action="/changeUsername" method="post">
+                    <input type="text" name="uname" placeholder="New Username">
+                    <input type="password" name="pwd" placeholder = "Confirm with password">
+                    <button>Change</button>
+                </form>
+            `;
+        }
+
+        function deleteAccount() {
+            settingsBottom.innerHTML  = `
+                        <h3>Delete Account</h3>
+                <form action="/deleteAccount" method="post">
+                    <input type="text" name="uname" placeholder="Enter username">
+                    <input type="password" name="pwd" placeholder = "Enter password">
+                    <label>Are you sure you want to delete this account?</label>
+                    <button>Delete</button>
+                </form>
+            `;
+        }
+    </script>
+</body>
+</html>

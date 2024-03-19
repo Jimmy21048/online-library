@@ -3,6 +3,7 @@
     <%- include('./partials/head.ejs') %>
 <body class="community-main">
     <div class="community-header">
+        <a href="/backCommunity/<%= id%>"><i class="fa-solid fa-chevron-left"></i></a>
         <%= uname%>
     </div>
     <div class="community-body">
@@ -26,7 +27,7 @@
     <div class="community-text">
         <form action="/addChat/<%= id%>" method="post" id="form" action="">
             <input hidden type="number" id="userId" value="<%=id%>">
-            <input autocomplete="off" id="input" name="text">
+            <input autocomplete="off" id="input" name="text" placeholder="Type text here">
             <button><i class="fa-regular fa-paper-plane"></i></button>
         </form>
     </div>
