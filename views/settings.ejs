@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('./partials/head.ejs') %>
-<body>
+<body class="settings">
     <div class="settings-body">
+        <div class="settings-tab">
+            <a href="/backCommunity"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="/logout">Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i> </a>
+        </div>
         <div class="settings-top">
             <div><a href="/"><i class="fa-solid fa-house"></i> Home</a></div>
             <div><a onclick="changeUsername()"><i class="fa-solid fa-user-pen"></i> Change Username</a></div>
-            <div><a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a></div>
+            <div><a onclick="changeProfile()"><i class="fa-solid fa-camera"></i> Change DP</a></div>
             <div><a onclick="deleteAccount()"><i class="fa-solid fa-trash"></i> Delete Account</a></div>
             
         </div>
@@ -43,6 +47,16 @@
                     <input type="password" name="pwd" placeholder = "Enter password">
                     <label>Are you sure you want to delete this account?</label>
                     <button>Delete</button>
+                </form>
+            `;
+        }
+
+        function changeProfile() {
+            settingsBottom.innerHTML = `
+            <h3>Change Profile picture</h3>
+                <form action="/changeProfile" method="post" enctype="multipart/form-data">
+                    <input type="file" id="image" name="image">
+                    <button>Change DP</button>
                 </form>
             `;
         }

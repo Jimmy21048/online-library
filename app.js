@@ -7,6 +7,8 @@ const http = require('http');
 const connection = require('./config');
 const RedisStore = require('connect-redis').default;
 const redis = require('redis');
+const path = require('path');
+const multer = require('multer');
 
 //getting routes
 const authenticate = require('./routes/login');
@@ -34,6 +36,19 @@ redisClient.on("connect", () => {
 redisClient.on("error", (err) => {
     console.log("could not conect redis", err);
 });
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images')
+    },
+    filename: (req, file, cb) => {
+        const uId = req.session.userInfo[0].member_id.toString();
+        req.session.filePath = uId + path.extname(file.originalname);
+        cb(null,  uId + path.extname(file.originalname));
+    }
+})
+const upload = multer({storage: storage});
 
 app.use(session({
     store: new RedisStore({client: redisClient}),
@@ -150,8 +165,21 @@ app.post('/changeUsername', async (req, res) => {
 app.post('/deleteAccount', (req, res) => {
     community.deleteAccount(req, res);
 })
-app.get('/backCommunity/:id', (req, res) => {
+app.get('/backCommunity', (req, res) => {
     community.back(req, res);
+})
+app.post('/changeProfile', upload.single('image'), (req, res) => {
+    const path = "./images/" + req.session.filePath;
+    const id = req.session.userInfo[0].member_id;
+    connection.query("UPDATE members SET member_picture = ? WHERE member_id = ?;", [path, id], (err) => {
+        if(err) {
+            console.log(err);
+            return res.send("Colud not execute query");
+        }
+        req.session.userInfo[0].member_picture = path;
+        res.redirect('/logMember');
+    })
+    
 })
 app.use((req, res) => {
     res.status(404).render('404');

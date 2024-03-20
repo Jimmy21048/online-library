@@ -15,7 +15,8 @@ const authenticate = {
             const details = {
                 member_id : userInfo.member_id,
                 member_username : userInfo.member_username,
-                member_email : userInfo.member_email
+                member_email : userInfo.member_email,
+                member_picture: userInfo.member_picture
             }
             const query0 = "SELECT book_id, book_name, book_count FROM books;";
             connection.query(query0, (err, allBooks) => {

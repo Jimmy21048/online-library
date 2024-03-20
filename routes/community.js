@@ -44,7 +44,6 @@ const community = {
     changeUsername: async (req, res) => {
         const data = req.body;
         const sessData = req.session.userInfo[0];
-        console.log(sessData);
         let doChange = await bcrypt.compare(data.pwd,sessData.member_password);
         if(doChange) {
             const query = "UPDATE members SET member_username = ? WHERE member_id = ?;";
@@ -95,8 +94,10 @@ const community = {
             }
         })
     },
+    changeProfile: (req, res) => {
+
+    },
     back: (req, res) => {
-        const id = req.params.id;
         res.redirect(`/logMember`);
     }
 }

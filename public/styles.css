@@ -714,17 +714,46 @@ header a:hover {
     margin:5vh 0;
     align-items:center;
 }
-.member-name {
+.member-info-top {
+    /* border:1px solid; */
     width:25vw;
-    height:7vh;
+    height:20vh;
+    display:flex;
+    justify-content: space-between;
+    align-items:Center;
+    padding:0 5px;
+}
+.member-profile {
+    height:120px;
+    width:120px;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#f5f8f7;
+}
+.member-profile .fa-solid {
+    color:rgb(233, 233, 233);
+    font-size:65px;
+}
+.member-profile img {
+    height:inherit;
+    width:100%;
+    border-radius: 50%;
+    object-fit:cover;
+}
+.member-name {
+    width:12vw;
+    height:14vh;
     font-size:1.2rem;
     font-weight:100;
     border-radius:10px;
     background-color: #26eb71;
     color: white;
     display:flex;
+    flex-direction:column-reverse;
     justify-content:space-between;
-    padding:0 5px;
+    padding:10px 5px;
     align-items:center;
     box-shadow:1px 1px 1px black;
 }
@@ -952,13 +981,40 @@ header a:hover {
     outline:none;
 }
 /* settings page */
+.settings {
+    overflow-y:initial;
+}
 .settings-body {
-    height:100vh;
+    height:110vh;
     width:100vw;
     display:flex;
+    gap:20px;
     flex-direction:column;
     justify-content:space-around;
     align-items:Center;
+    overflow-y:scroll;
+}
+.settings-tab {
+    height:7vh;
+    width:800px;
+    box-shadow: 1px 1px 2px gray;
+    background-color:#fbfdff;
+    border-radius: 20px;
+    margin-top:5vh;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 10px;
+}
+.settings-tab a {
+    text-decoration:none;
+    color:black;
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+.settings-tab .fa-solid {
+    font-size:25px;
 }
 .settings-top {
     height:40vh;
@@ -995,6 +1051,16 @@ header a:hover {
 .settings-top .fa-solid {
     font-size:35px;
 }
+#label-image {
+    border:1px solid;
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+}
 .settings-bottom {
     height:50vh;
     width:800px;
@@ -1027,6 +1093,8 @@ header a:hover {
     background-color:#E7E9EB;
     width:300px;
     padding-left:5px;
+    display:flex;
+    align-items:center;
 }
 .settings-bottom form input:focus {
     outline: none;
@@ -1360,7 +1428,7 @@ header a:hover {
     }
     .member-left {
         width:100vw;
-        height:80vh;
+        height:100vh;
         gap:20px;
         justify-content: space-between;
         margin:20px 0;
@@ -1368,8 +1436,24 @@ header a:hover {
     .member-name {
         width:90vw;
         height:7vh;
+        flex-direction: row;
+        padding:0 10px;
         /* font-size:initial; */
     }
+    .member-info-top {
+        width:90vw;
+        height:40vh;
+        flex-direction: column-reverse;
+        padding:5px 5px;
+    }
+    .member-profile {
+        height:170px;
+        width:170px;
+        border-radius: 50%;
+        border:1px solid;
+
+    }
+
     .member-info {
         height:30vh;
         width:90vw;
@@ -1419,6 +1503,13 @@ header a:hover {
     padding:0;
     margin:0;
 }
+.settings-tab {
+    height:7vh;
+    width:90vw;
+    max-width:400px;
+
+}
+
 .settings-top {
     width:90vw;
     max-width:400px;

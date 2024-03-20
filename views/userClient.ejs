@@ -5,14 +5,19 @@
     <%- include('./partials/header.ejs') %>
     <div class="member-body">
         <div class="member-left">
-            <p class="member-name">
-                <a href="/logout">LOG OUT</a>
-                <!-- <a href="/settings"><i class="fa-solid fa-gear"></i></a> -->
-                <%= details.member_username %>
-            </p>
+            <div class="member-info-top">
+                <p class="member-name">
+                    <a href="/logout">LOG OUT</a>
+                    <%= details.member_username %>
+                </p>
+                <div class="member-profile">
+                    <img src="<%= details.member_picture%>" alt="profile-pic">              
+                </div>
+            </div>
+
             <div class="member-info">
                 <p>Email : <%= details.member_email %></p> 
-                <p>Library ID : <%= details.member_id %></p> 
+                <p>Library ID : <p id="libraryId"><%= details.member_id %></p></p> 
                 <a href="/settings"><i class="fa-solid fa-gear"> Settings</i></a>
             </div>
             <div class="member-community">
