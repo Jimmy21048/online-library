@@ -48,7 +48,10 @@ const storage = multer.diskStorage({
         cb(null,  uId + path.extname(file.originalname));
     }
 })
-const upload = multer({storage: storage});
+const upload = multer({
+    storage: storage,
+    limits: 1000000
+}).single('image');
 
 app.use(session({
     store: new RedisStore({client: redisClient}),
@@ -168,17 +171,26 @@ app.post('/deleteAccount', (req, res) => {
 app.get('/backCommunity', (req, res) => {
     community.back(req, res);
 })
-app.post('/changeProfile', upload.single('image'), (req, res) => {
-    const path = "./images/" + req.session.filePath;
-    const id = req.session.userInfo[0].member_id;
-    connection.query("UPDATE members SET member_picture = ? WHERE member_id = ?;", [path, id], (err) => {
-        if(err) {
-            console.log(err);
-            return res.send("Colud not execute query");
+app.post('/changeProfile', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('An error occurred while uploading the file.');
+        } else {
+          console.log('file uploaded succesfully');
+          const path = "./images/" + req.session.filePath;
+          const id = req.session.userInfo[0].member_id;
+          connection.query("UPDATE members SET member_picture = ? WHERE member_id = ?;", [path, id], (err) => {
+              if(err) {
+                  console.log(err);
+                  return res.send("Colud not execute query");
+              }
+              req.session.userInfo[0].member_picture = path;
+              res.redirect('/logMember');
+          })
         }
-        req.session.userInfo[0].member_picture = path;
-        res.redirect('/logMember');
-    })
+      });
+
     
 })
 app.use((req, res) => {
