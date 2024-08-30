@@ -20,10 +20,10 @@ const app = express();
 
 //redis
 const redisClient = redis.createClient({
-    password: '7NsiNBCLSOBo5vOsftb4cx0bjo2RtnMB',
+    password: 'JFfh1H5DKW9pF6PG67u1LJnvXhgNnQG1',
     socket: {
-        host: 'redis-18866.c10.us-east-1-3.ec2.cloud.redislabs.com',
-        port: 18866
+        host: 'redis-16150.c8.us-east-1-2.ec2.redns.redis-cloud.com',
+        port: 16150
     }
 });
 
@@ -55,6 +55,7 @@ const upload = multer({
 
 app.use(session({
     store: new RedisStore({client: redisClient}),
+    // store:new session.MemoryStore(),
     secret: 'ibook-library-session',
     resave: false,
     saveUninitialized: true,
@@ -99,11 +100,13 @@ io.on('connection', (socket) => {
 
 app.post('/borrowBook', (req, res) => {
     books.borrowBook(req, res);
+    
 })
 
 //regist users
 app.post('/addMember', (req, res) => {
     authenticate.addMember(req, res);
+    
 })
 app.post('/logMember', (req, res) => {
     authenticate.loginPost(req, res);
@@ -203,7 +206,7 @@ connection.connect((err) => {
         return;
     }
     console.log('connected');
-    server.listen(3000, () => {
+    server.listen(3002, () => {
         console.log('listening at port 3000');
     });
 })
